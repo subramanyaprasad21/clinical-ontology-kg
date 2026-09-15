@@ -1,0 +1,96 @@
+{
+  "acquisition_metadata_complete": false,
+  "ambiguous_mappings": 0,
+  "asserted_unique_triples": 160,
+  "build_fingerprint": "2b35d6f2b11d9713646c7fc402ad05651f48e42b49896ec5d87875d24e36d140",
+  "competency_questions": {
+    "01_hierarchy": {
+      "rows": 16,
+      "status": "answered"
+    },
+    "02_phenotypes": {
+      "rows": 6,
+      "status": "answered"
+    },
+    "03_phenotype_evidence": {
+      "rows": 9,
+      "status": "answered"
+    },
+    "04_disease_targets": {
+      "rows": 0,
+      "status": "unsupported"
+    },
+    "05_drugs": {
+      "rows": 0,
+      "status": "unsupported"
+    },
+    "06_disease_target_drug_path": {
+      "rows": 0,
+      "status": "unsupported"
+    },
+    "07_mappings": {
+      "rows": 11,
+      "status": "answered"
+    },
+    "08_multi_source_annotations": {
+      "rows": 5,
+      "status": "answered"
+    },
+    "09_inference": {
+      "rows": 22,
+      "status": "answered"
+    },
+    "10_provenance": {
+      "rows": 179,
+      "status": "answered"
+    },
+    "11_validation_violations": {
+      "rows": 0,
+      "status": "answered"
+    }
+  },
+  "disease_concepts": 13,
+  "distinct_upstream_annotation_resources": 1,
+  "frozen_input_files": 11,
+  "hierarchy_classes_including_anchor": 17,
+  "hpo_annotation_records": 5,
+  "hpo_terms": 5,
+  "imported_assertion_records": 179,
+  "independent_corroboration_established": false,
+  "inferred_triples_including_rdf_owl_bookkeeping": 585,
+  "invalid_cases_detected": 6,
+  "mapping_counts": {
+    "http://www.w3.org/2004/02/skos/core#broadMatch": 0,
+    "http://www.w3.org/2004/02/skos/core#closeMatch": 0,
+    "http://www.w3.org/2004/02/skos/core#exactMatch": 10,
+    "http://www.w3.org/2004/02/skos/core#narrowMatch": 0,
+    "http://www.w3.org/2004/02/skos/core#relatedMatch": 0
+  },
+  "ot_annotation_rows": 5,
+  "ot_duplicate_evidence_entries": 5,
+  "ot_release_independently_verified": false,
+  "provenance": {
+    "coverage_percent": 100.0,
+    "covered_source_quads": 174,
+    "malformed_assertions": [],
+    "source_quads": 174
+  },
+  "raw_file_bytes": 487211049,
+  "rdf_round_trip_verified": true,
+  "reasoning_export": {
+    "generalized_non_rdf_triples_excluded": 84
+  },
+  "shacl_conforms": true,
+  "shacl_violations": {},
+  "source_graph_counts": {
+    "https://example.org/clinical-kg/graph/source/hpo-annotations": 8,
+    "https://example.org/clinical-kg/graph/source/hpo-ontology": 15,
+    "https://example.org/clinical-kg/graph/source/mondo": 131,
+    "https://example.org/clinical-kg/graph/source/ot-disease": 15,
+    "https://example.org/clinical-kg/graph/source/ot-phenotypes": 5
+  },
+  "t2dm_drugs": 0,
+  "t2dm_positive_phenotypes": 3,
+  "t2dm_targets": 0,
+  "unresolved_mappings": 1
+}

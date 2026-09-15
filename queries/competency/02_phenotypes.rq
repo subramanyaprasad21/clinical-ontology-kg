@@ -1,0 +1,11 @@
+PREFIX kg: <https://example.org/clinical-kg/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+SELECT DISTINCT ?disease ?phenotype ?label ?graph WHERE {
+ GRAPH ?graph { ?disease kg:hasPhenotype ?phenotype }
+ GRAPH <https://example.org/clinical-kg/graph/source/hpo-ontology> { ?phenotype rdfs:label ?label }
+ FILTER(STRSTARTS(STR(?graph), CONCAT(STR(kg:), "graph/source/")))
+} ORDER BY ?disease ?phenotype ?graph

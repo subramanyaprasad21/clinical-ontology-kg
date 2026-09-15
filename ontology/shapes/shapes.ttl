@@ -1,0 +1,46 @@
+@prefix kg: <https://example.org/clinical-kg/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+kg:EntityShape a sh:NodeShape ; sh:targetClass kg:DiseaseConcept, kg:HPOTerm, kg:OntologyConcept ;
+ sh:nodeKind sh:IRI ;
+ sh:property [ sh:path kg:identifier ; sh:minCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ;
+ sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:minLength 1 ] .
+kg:PhenotypeShape a sh:NodeShape ; sh:targetSubjectsOf kg:hasPhenotype ;
+ sh:class kg:DiseaseConcept ;
+ sh:property [ sh:path kg:hasPhenotype ; sh:nodeKind sh:IRI ; sh:class kg:HPOTerm ] .
+kg:AnnotationShape a sh:NodeShape ; sh:targetSubjectsOf kg:hasInheritanceAnnotation, kg:hasClinicalModifier, kg:hasExcludedPhenotype ;
+ sh:class kg:DiseaseConcept ;
+ sh:property [ sh:path kg:hasInheritanceAnnotation ; sh:class kg:HPOTerm ] ;
+ sh:property [ sh:path kg:hasClinicalModifier ; sh:class kg:HPOTerm ] ;
+ sh:property [ sh:path kg:hasExcludedPhenotype ; sh:class kg:HPOTerm ] .
+kg:AssertionShape a sh:NodeShape ; sh:targetClass kg:ImportedAssertion ;
+ sh:property [ sh:path rdf:subject ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+ sh:property [ sh:path rdf:predicate ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+ sh:property [ sh:path rdf:object ; sh:minCount 1 ; sh:maxCount 1 ] ;
+ sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ; sh:maxCount 1 ; sh:class kg:SourceRecord ] ;
+ sh:property [ sh:path prov:wasGeneratedBy ; sh:minCount 1 ; sh:maxCount 1 ; sh:class prov:Activity ] ;
+ sh:property [ sh:path kg:assertedIn ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] .
+kg:RecordShape a sh:NodeShape ; sh:targetClass kg:SourceRecord ;
+ sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ; sh:maxCount 1 ; sh:class kg:SourceSnapshot ] ;
+ sh:property [ sh:path kg:locator ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+ sh:property [ sh:path kg:originalIdentifier ; sh:minCount 1 ; sh:datatype xsd:string ] ;
+ sh:property [ sh:path kg:payload ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype rdf:JSON ] .
+kg:SnapshotShape a sh:NodeShape ; sh:targetClass kg:SourceSnapshot ;
+ sh:property [ sh:path kg:source ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] ;
+ sh:property [ sh:path kg:version ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ; sh:minLength 1 ] ;
+ sh:property [ sh:path kg:versionBasis ; sh:minCount 1 ; sh:datatype xsd:string ] ;
+ sh:property [ sh:path kg:sha256 ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^[0-9a-f]{64}$" ] ;
+ sh:property [ sh:path kg:path ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ] .
+kg:MappingShape a sh:NodeShape ; sh:targetClass kg:MappingAssertion ;
+ sh:property [ sh:path rdf:predicate ; sh:in (skos:exactMatch skos:broadMatch skos:narrowMatch skos:relatedMatch skos:closeMatch) ] ;
+ sh:property [ sh:path rdf:object ; sh:nodeKind sh:IRI ] ;
+ sh:property [ sh:path kg:mappingMethod ; sh:minCount 1 ; sh:datatype xsd:string ] .
+kg:CandidateShape a sh:NodeShape ; sh:targetClass kg:MappingCandidate ;
+ sh:property [ sh:path kg:status ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ("unresolved" "ambiguous") ] ;
+ sh:property [ sh:path kg:candidateIdentifier ; sh:minCount 1 ] ;
+ sh:property [ sh:path prov:wasDerivedFrom ; sh:minCount 1 ; sh:class kg:SourceRecord ] .

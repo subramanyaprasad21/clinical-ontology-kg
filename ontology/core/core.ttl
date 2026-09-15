@@ -1,0 +1,31 @@
+@prefix kg: <https://example.org/clinical-kg/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+kg:ontology a owl:Ontology ; owl:versionInfo "1.0.0" ;
+ rdfs:label "T2DM source-bounded integration vocabulary" ;
+ rdfs:comment "The example.org namespace is a local project namespace, not a published ontology service. DiseaseConcept and HPOTerm describe terminology concepts, never patients." .
+kg:Entity a owl:Class .
+kg:OntologyConcept a owl:Class ; rdfs:subClassOf kg:Entity, skos:Concept .
+kg:DiseaseConcept a owl:Class ; rdfs:subClassOf kg:OntologyConcept .
+kg:HPOTerm a owl:Class ; rdfs:subClassOf kg:Entity, skos:Concept .
+kg:SourceRecord a owl:Class ; rdfs:subClassOf prov:Entity .
+kg:SourceSnapshot a owl:Class ; rdfs:subClassOf prov:Entity .
+kg:ImportedAssertion a owl:Class ; rdfs:subClassOf rdf:Statement .
+kg:MappingAssertion a owl:Class ; rdfs:subClassOf kg:ImportedAssertion .
+kg:MappingCandidate a owl:Class .
+kg:InferredAssertion a owl:Class ; rdfs:subClassOf rdf:Statement .
+kg:hasHPOAnnotation a owl:ObjectProperty ; rdfs:domain kg:DiseaseConcept ; rdfs:range kg:HPOTerm .
+kg:hasPhenotype a owl:ObjectProperty ; rdfs:subPropertyOf kg:hasHPOAnnotation ; owl:inverseOf kg:phenotypeOf .
+kg:phenotypeOf a owl:ObjectProperty ; rdfs:domain kg:HPOTerm ; rdfs:range kg:DiseaseConcept .
+kg:hasInheritanceAnnotation a owl:ObjectProperty ; rdfs:subPropertyOf kg:hasHPOAnnotation .
+kg:hasClinicalModifier a owl:ObjectProperty ; rdfs:subPropertyOf kg:hasHPOAnnotation .
+kg:hasExcludedPhenotype a owl:ObjectProperty ; rdfs:domain kg:DiseaseConcept ; rdfs:range kg:HPOTerm .
+kg:PhenotypeAnnotatedConcept a owl:Class ;
+ owl:equivalentClass [ a owl:Class ; owl:intersectionOf (
+   kg:DiseaseConcept [ a owl:Restriction ; owl:onProperty kg:hasPhenotype ; owl:someValuesFrom kg:HPOTerm ]
+ ) ] ;
+ rdfs:comment "A terminology concept with a positive phenotype annotation. This classification makes no assertion about individual patients or treatment." .

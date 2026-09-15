@@ -1,0 +1,7 @@
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+SELECT ?focus ?path ?message ?constraint WHERE {
+ GRAPH <https://example.org/clinical-kg/graph/validation> {
+  ?result a sh:ValidationResult ; sh:focusNode ?focus ; sh:resultMessage ?message ; sh:sourceConstraintComponent ?constraint .
+  OPTIONAL { ?result sh:resultPath ?path }
+ }
+} ORDER BY ?focus ?path

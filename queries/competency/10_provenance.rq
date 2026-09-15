@@ -1,0 +1,13 @@
+PREFIX kg: <https://example.org/clinical-kg/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+SELECT ?assertion ?subject ?predicate ?object ?path ?version ?versionBasis ?originalIdentifier ?locator ?event WHERE {
+ GRAPH <https://example.org/clinical-kg/graph/provenance> {
+  ?assertion a kg:ImportedAssertion ; rdf:subject ?subject ; rdf:predicate ?predicate ; rdf:object ?object ; prov:wasDerivedFrom ?record ; prov:wasGeneratedBy ?event .
+  ?record kg:originalIdentifier ?originalIdentifier ; kg:locator ?locator ; prov:wasDerivedFrom ?snapshot .
+  ?snapshot kg:path ?path ; kg:version ?version ; kg:versionBasis ?versionBasis .
+ }
+} ORDER BY ?assertion

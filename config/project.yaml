@@ -1,0 +1,17 @@
+project:
+  name: clinical-ontology-kg
+  version: 1.0.0
+  disease_anchor: MONDO_0005148
+  scope: frozen-source-core
+sources:
+  mondo: {enabled: true, version: '2026-09-01'}
+  hpo_ontology: {enabled: true, version: '2026-09-01'}
+  hpo_annotations: {enabled: true, version: '2026-09-02'}
+  open_targets: {enabled: true, version: '26.06', version_basis: user-declared}
+  drugcentral: {enabled: false}
+  loinc: {enabled: false}
+policy:
+  allow_downloads: false
+  preserve_source_records: true
+  use_label_similarity_for_mappings: false
+  include_unsupported_clinical_edges: false

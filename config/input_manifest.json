@@ -1,0 +1,128 @@
+{
+  "freeze_observed_at": "2026-09-10T03:56:57.161380+00:00",
+  "inputs": [
+    {
+      "acquisition_status": "not recorded in supplied folder",
+      "bytes": 76854086,
+      "download_date": null,
+      "download_url": null,
+      "path": "data/raw/hpo/hp.owl",
+      "sha256": "8da35ec3b4cb494369b249acb9c2b3874a5a5839a91d5fae74b0d215b355138b",
+      "source": "hpo",
+      "version": "http://purl.obolibrary.org/obo/hp/releases/2026-09-01/hp.owl",
+      "version_basis": "embedded owl:versionIRI"
+    },
+    {
+      "acquisition_status": "not recorded in supplied folder",
+      "bytes": 35816037,
+      "download_date": null,
+      "download_url": null,
+      "path": "data/raw/hpo/phenotype.hpoa",
+      "sha256": "e89aa39c8f97bf5a52c5d160f9250a603681d630ade8ec2679d84ac5aece1f72",
+      "source": "hpo",
+      "version": "2026-09-02",
+      "version_basis": "embedded HPOA #version header"
+    },
+    {
+      "acquisition_status": "not recorded in supplied folder",
+      "bytes": 254230660,
+      "download_date": null,
+      "download_url": null,
+      "path": "data/raw/mondo/mondo.owl",
+      "sha256": "358230f024897bdb7dd29ef3c19c59df3c6d7597d0b74b5ce926f7591f215105",
+      "source": "mondo",
+      "version": "http://purl.obolibrary.org/obo/mondo/releases/2026-09-01/mondo.owl",
+      "version_basis": "embedded owl:versionIRI"
+    },
+    {
+      "acquisition_status": "not recorded in supplied folder",
+      "bytes": 7150787,
+      "download_date": null,
+      "download_url": null,
+      "path": "data/raw/open_targets/disease.parquet",
+      "sha256": "b328c5e775bc40d954f2e058aa59e8e972f2883a262d096f8dffe365736a1aed",
+      "source": "open_targets",
+      "version": "26.06",
+      "version_basis": "user-declared; not independently encoded in Parquet metadata"
+    },
+    {
+      "acquisition_status": "not recorded in supplied folder",
+      "bytes": 7999495,
+      "download_date": null,
+      "download_url": null,
+      "path": "data/raw/open_targets/disease_phenotype.parquet",
+      "sha256": "52bb33c462d4a07ed80cd5c09c3985c35b7db01e48dd5b868ac9f27916692b25",
+      "source": "open_targets",
+      "version": "26.06",
+      "version_basis": "user-declared; not independently encoded in Parquet metadata"
+    },
+    {
+      "acquisition_status": "not recorded in supplied folder",
+      "bytes": 281271,
+      "download_date": null,
+      "download_url": null,
+      "path": "data/raw/open_targets/drug_mechanism_of_action/part-00000-10b94b1b-f29a-440c-98e0-c91862b6d2a8-c000.snappy.parquet",
+      "sha256": "949aedc4717356279877da143a13cf11f267f96d062fe0e12c1c44816959cb4a",
+      "source": "open_targets",
+      "version": "26.06",
+      "version_basis": "user-declared; not independently encoded in Parquet metadata"
+    },
+    {
+      "acquisition_status": "not recorded in supplied folder",
+      "bytes": 299939,
+      "download_date": null,
+      "download_url": null,
+      "path": "data/raw/open_targets/drug_mechanism_of_action/part-00001-10b94b1b-f29a-440c-98e0-c91862b6d2a8-c000.snappy.parquet",
+      "sha256": "4a02cef4c182bb0ed20d341c6c4553f6c839b02f3217777fb65993a38e456a29",
+      "source": "open_targets",
+      "version": "26.06",
+      "version_basis": "user-declared; not independently encoded in Parquet metadata"
+    },
+    {
+      "acquisition_status": "not recorded in supplied folder",
+      "bytes": 14647216,
+      "download_date": null,
+      "download_url": null,
+      "path": "data/raw/open_targets/drug_molecule/part-00000-5581d2c3-048b-4097-934f-51cec06d7ff0-c000.snappy.parquet",
+      "sha256": "d98d7e4e6e3c7a91fdd915c7dd2f5f8e07504da73fec22880bf4aca10fc524da",
+      "source": "open_targets",
+      "version": "26.06",
+      "version_basis": "user-declared; not independently encoded in Parquet metadata"
+    },
+    {
+      "acquisition_status": "not recorded in supplied folder",
+      "bytes": 30365704,
+      "download_date": null,
+      "download_url": null,
+      "path": "data/raw/open_targets/target/part-00000-810593a9-06e5-4201-a034-4d82bcbe81e7-c000.snappy.parquet",
+      "sha256": "770cdce2c5b6c46952777139bbe68bd0164a6eb0878ad94832775f7d9838d216",
+      "source": "open_targets",
+      "version": "26.06",
+      "version_basis": "user-declared; not independently encoded in Parquet metadata"
+    },
+    {
+      "acquisition_status": "not recorded in supplied folder",
+      "bytes": 29725904,
+      "download_date": null,
+      "download_url": null,
+      "path": "data/raw/open_targets/target/part-00001-810593a9-06e5-4201-a034-4d82bcbe81e7-c000.snappy.parquet",
+      "sha256": "e2a0bf1db8d4d31cdcc90cea56cec19c068c7a6077f37d3e75dedc7b44a19bbf",
+      "source": "open_targets",
+      "version": "26.06",
+      "version_basis": "user-declared; not independently encoded in Parquet metadata"
+    },
+    {
+      "acquisition_status": "not recorded in supplied folder",
+      "bytes": 29839950,
+      "download_date": null,
+      "download_url": null,
+      "path": "data/raw/open_targets/target/part-00002-810593a9-06e5-4201-a034-4d82bcbe81e7-c000.snappy.parquet",
+      "sha256": "7fc4baeb3e0b9a95f0cad2e280b47955e253bceb3eba8cf85f32e770e771284a",
+      "source": "open_targets",
+      "version": "26.06",
+      "version_basis": "user-declared; not independently encoded in Parquet metadata"
+    }
+  ],
+  "note": "Freeze observation time is not a download/access date. Unknown acquisition fields remain null.",
+  "schema_version": 1
+}

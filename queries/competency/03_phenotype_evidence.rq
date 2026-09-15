@@ -1,0 +1,14 @@
+PREFIX kg: <https://example.org/clinical-kg/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+SELECT DISTINCT ?disease ?phenotype ?source ?version ?locator ?code ?reference ?upstream WHERE {
+ GRAPH <https://example.org/clinical-kg/graph/provenance> {
+  ?a a kg:ImportedAssertion ; rdf:subject ?disease ; rdf:predicate kg:hasPhenotype ; rdf:object ?phenotype ; prov:wasDerivedFrom ?record .
+  ?record prov:wasDerivedFrom ?snapshot ; kg:locator ?locator ; kg:evidenceCode ?code ; kg:upstreamResource ?upstream .
+  OPTIONAL { ?record kg:reference ?reference }
+  ?snapshot kg:source ?source ; kg:version ?version .
+ }
+} ORDER BY ?disease ?phenotype ?locator

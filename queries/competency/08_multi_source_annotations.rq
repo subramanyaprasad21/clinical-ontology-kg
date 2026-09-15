@@ -1,0 +1,15 @@
+PREFIX kg: <https://example.org/clinical-kg/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+SELECT ?predicate ?term (COUNT(DISTINCT ?source) AS ?sourceCount) WHERE {
+ GRAPH <https://example.org/clinical-kg/graph/source/mondo> { obo:MONDO_0005148 skos:exactMatch ?mapped }
+ GRAPH <https://example.org/clinical-kg/graph/provenance> {
+  ?a a kg:ImportedAssertion ; rdf:subject ?disease ; rdf:predicate ?predicate ; rdf:object ?term ; prov:wasDerivedFrom/prov:wasDerivedFrom ?snapshot .
+  ?snapshot kg:source ?source .
+ }
+ FILTER(?disease = obo:MONDO_0005148 || ?disease = ?mapped)
+ VALUES ?predicate { kg:hasPhenotype kg:hasInheritanceAnnotation kg:hasClinicalModifier }
+} GROUP BY ?predicate ?term HAVING(COUNT(DISTINCT ?source) > 1) ORDER BY ?predicate ?term
