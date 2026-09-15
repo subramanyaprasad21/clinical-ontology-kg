@@ -24,7 +24,7 @@ Protégé's [view reference](https://protegeproject.github.io/protege/views/) de
 
 The terminology individual and the disease class can share an IRI. Inspect both roles: a concept's phenotype relation is an individual-level assertion in this model, not an OWL restriction on every patient instance of the disease class. The HPO term named Type II diabetes mellitus remains separate from Mondo.
 
-Not every metadata predicate is explicitly declared as an OWL annotation property in `core.ttl`. A parser may render undeclared terms differently. Missing content in an Annotations pane is therefore not proof of missing RDF; inspect Usage or the Turtle. Do not add declarations simply to obtain a preferred screenshot without first deciding their semantics.
+`review.ttl` explicitly declares identifiers, source xrefs and alternative labels as annotation properties; exact matching remains an object property. It declares terminology individuals and referenced classes. These export declarations make the intended roles explicit and do not equate mapped concepts. The underlying `core.ttl` remains unchanged.
 
 ## Reasoner check
 
@@ -38,7 +38,7 @@ The verified Python OWL RL workflow derives these results:
 
 The first result is **individual classification**, not a new disease superclass. Look in individual types/instances rather than expecting T2DM to move underneath the local annotation class in the disease hierarchy. The [Class Description](https://protegeproject.github.io/protege/views/class-description/) distinguishes equivalent classes, superclasses and instances.
 
-These are expectations from the tested RDF rule workflow, not a guarantee for an arbitrary Protégé reasoner. In `review.ttl`, the builder gives ontology restriction/list nodes stable IRIs, whereas `core.ttl` uses blank nodes. Together with class/concept dual use, this requires an explicit import/profile check. Record any warning or refusal. Do not remove an axiom to make the reasoner pass and then call it a validation of the unchanged model.
+The installed Protégé 5.6.9 OWL API 4.5.29 and HermiT 1.4.3.456 libraries now verify consistency, the Mondo individual classification and one inverse relation in the repaired export. This is an automated library check, not a completed human GUI walkthrough. `review.ttl` preserves anonymous restriction/list nodes; the canonical RDF dataset still uses stable IRIs. Three OWL DL profile violations involving `rdf:Statement` in the provenance schema remain and are not suppressed. See [the follow-up report](../reports/EXPORT_VALIDATION_FOLLOWUP.md) for exact scope and reproduction.
 
 `data/processed/inferred.ttl` is the materialized result of the Python run. If you load those triples manually, Protégé treats the loaded statements as assertions in that document; their presence is not proof that the Protégé reasoner derived them. Use the separate source and inference files plus competency query 09 for that distinction.
 

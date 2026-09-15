@@ -13,6 +13,9 @@ kg:EntityShape a sh:NodeShape ; sh:targetClass kg:DiseaseConcept, kg:HPOTerm, kg
 kg:PhenotypeShape a sh:NodeShape ; sh:targetSubjectsOf kg:hasPhenotype ;
  sh:class kg:DiseaseConcept ;
  sh:property [ sh:path kg:hasPhenotype ; sh:nodeKind sh:IRI ; sh:class kg:HPOTerm ] .
+kg:GenericAnnotationShape a sh:NodeShape ; sh:targetSubjectsOf kg:hasHPOAnnotation ;
+ sh:class kg:DiseaseConcept ;
+ sh:property [ sh:path kg:hasHPOAnnotation ; sh:nodeKind sh:IRI ; sh:class kg:HPOTerm ] .
 kg:AnnotationShape a sh:NodeShape ; sh:targetSubjectsOf kg:hasInheritanceAnnotation, kg:hasClinicalModifier, kg:hasExcludedPhenotype ;
  sh:class kg:DiseaseConcept ;
  sh:property [ sh:path kg:hasInheritanceAnnotation ; sh:class kg:HPOTerm ] ;

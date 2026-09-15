@@ -80,4 +80,4 @@ Mondo and HPO OWL versions are `2026-09-01`; the actual HPOA header is `2026-09-
 
 Read the [feasibility audit](../docs/01_data_feasibility_matrix.md), [mapping policy](../docs/02_mapping_policy.md), [ontology design](../docs/04_ontology_design_notes.md), [provenance model](../docs/provenance_model.md), and [limitations](../docs/limitations.md) for the precise scope.
 
-Build fingerprint: `2b35d6f2b11d9713646c7fc402ad05651f48e42b49896ec5d87875d24e36d140`.
+Build fingerprint: `605f6f763ffc876dd1e9ad2666e15a63655db4d11ee553d94d463a9e9671a2f9`.

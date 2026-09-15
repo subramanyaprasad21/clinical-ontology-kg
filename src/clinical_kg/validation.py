@@ -21,6 +21,30 @@ def run_shacl(graph, shapes):
     return bool(conforms), report, text, dict(sorted(counts.items()))
 
 
+def phenotype_conflicts(asserted, provenance):
+    """Flag exact-IRI positive/excluded pairs without adjudicating evidence.
+
+    Source disagreement is reviewable evidence, not an OWL contradiction or a
+    reason to delete either assertion. Mappings do not propagate these flags.
+    """
+    pairs = set(asserted.subject_objects(KG.hasPhenotype)) & set(asserted.subject_objects(KG.hasExcludedPhenotype))
+    results = []
+    for subject, target in sorted(pairs, key=lambda pair: tuple(map(str, pair))):
+        evidence = {}
+        for predicate in (KG.hasPhenotype, KG.hasExcludedPhenotype):
+            records = []
+            for statement in provenance.subjects(RDF.subject, subject):
+                if ((statement, RDF.predicate, predicate) in provenance
+                        and (statement, RDF.object, target) in provenance):
+                    records.append({'assertion': str(statement),
+                                    'records': sorted(map(str, provenance.objects(statement, PROV.wasDerivedFrom))),
+                                    'graphs': sorted(map(str, provenance.objects(statement, KG.assertedIn)))})
+            evidence[str(predicate)] = sorted(records, key=lambda record: record['assertion'])
+        results.append({'subject': str(subject), 'phenotype': str(target),
+                        'status': 'human_review_required', 'evidence': evidence})
+    return results
+
+
 def provenance_coverage(builder):
     p = builder.prov
     covered, total = 0, 0

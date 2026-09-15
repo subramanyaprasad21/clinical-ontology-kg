@@ -1,5 +1,7 @@
 # Scientific and semantic audit
 
+> Historical baseline audit, before the export/validation fix. Its findings and ratings are preserved. See [the follow-up](EXPORT_VALIDATION_FOLLOWUP.md) for current results. Baseline machine evidence is in `credibility_audit/pre_export_fix/`; the main evidence files now describe the latest run.
+
 Checks executed 15 September 2026; documentation completed 16 September 2026. Audited baseline: `4f44c9f`. This review evaluates the existing T2DM project; it adds no biomedical data or clinical edges. The separate verification code was written and run by the same AI assistant that helped implement the project. “Independent” below means independent of production extraction/build helpers, not an external researcher or a second reasoning engine.
 
 **Verdict:** the project is defensible as a small semantic integration prototype with a useful negative feasibility result. It is not evidence of a comprehensive diabetes graph, sophisticated clinical reasoning, independent biological corroboration, or unaided human ontology authorship. It is suitable for a supervisor discussion if those boundaries are stated and the author can explain the modelling decisions.

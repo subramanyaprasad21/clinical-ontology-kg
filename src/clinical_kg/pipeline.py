@@ -7,12 +7,13 @@ from importlib.metadata import version
 from pathlib import Path
 from rdflib import BNode, Dataset, Graph, RDF, RDFS, SKOS, URIRef
 from rdflib.namespace import PROV
-from rdflib.compare import to_canonical_graph
+from rdflib.compare import to_canonical_graph, isomorphic
 from .audit import audit
 from .graph import Builder, KG, serialize_dataset, serialize_sorted
 from .inputs import ANCHOR, digest, dump, inventory, verify
 from .reasoning import reason
-from .validation import invalid_demonstrations, provenance_coverage, run_shacl, union
+from .review import review_graph
+from .validation import invalid_demonstrations, provenance_coverage, run_shacl, union, phenotype_conflicts
 
 
 def code_fingerprint(root, manifest):
@@ -84,7 +85,10 @@ def build(root):
     serialize_sorted(asserted, out / 'asserted.ttl')
     serialize_sorted(inferred, out / 'inferred.ttl')
     serialize_sorted(builder.prov, out / 'provenance.ttl')
-    serialize_sorted(asserted + builder.schema, out / 'review.ttl')
+    review = review_graph(root, asserted)
+    serialize_sorted(review, out / 'review.ttl')
+    conflicts = phenotype_conflicts(asserted, builder.prov)
+    dump(root / 'reports/tables/phenotype_conflicts.json', conflicts)
     mappings = Graph()
     for triple in builder.ds.graph(KG['graph/source/mondo']):
         if str(triple[1]).startswith(str(SKOS)) and triple[1] != SKOS.altLabel:
@@ -95,8 +99,8 @@ def build(root):
     if set(reparsed.quads()) != set(builder.ds.quads()):
         raise ValueError('Dataset serialization round-trip changed quads')
     for name, graph in [('asserted', asserted), ('inferred', inferred), ('provenance', builder.prov),
-                        ('review', asserted + builder.schema), ('mappings', mappings)]:
-        if set(Graph().parse(out / (name + '.ttl'), format='turtle')) != set(graph):
+                        ('review', review), ('mappings', mappings)]:
+        if not isomorphic(Graph().parse(out / (name + '.ttl'), format='turtle'), graph):
             raise ValueError(f'{name} Turtle round-trip changed triples')
     dump(root / 'reports/tables/mapping_candidates.json', candidates)
     dump(root / 'reports/tables/reasoning_examples.json', examples)
@@ -122,6 +126,7 @@ def build(root):
         'rdf_round_trip_verified': True,
         'provenance': coverage, 'shacl_conforms': conforms, 'shacl_violations': violations,
         'invalid_cases_detected': len(invalid),
+        'phenotype_conflicts_for_review': len(conflicts),
         'competency_questions': {k: {'status': v['status'], 'rows': v['row_count']} for k, v in queries.items()},
         'distinct_upstream_annotation_resources': len(set(builder.prov.objects(None, KG.upstreamResource))),
         'independent_corroboration_established': False,

@@ -2,7 +2,7 @@
   "acquisition_metadata_complete": false,
   "ambiguous_mappings": 0,
   "asserted_unique_triples": 160,
-  "build_fingerprint": "2b35d6f2b11d9713646c7fc402ad05651f48e42b49896ec5d87875d24e36d140",
+  "build_fingerprint": "605f6f763ffc876dd1e9ad2666e15a63655db4d11ee553d94d463a9e9671a2f9",
   "competency_questions": {
     "01_hierarchy": {
       "rows": 16,
@@ -69,6 +69,7 @@
   "ot_annotation_rows": 5,
   "ot_duplicate_evidence_entries": 5,
   "ot_release_independently_verified": false,
+  "phenotype_conflicts_for_review": 0,
   "provenance": {
     "coverage_percent": 100.0,
     "covered_source_quads": 174,

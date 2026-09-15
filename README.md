@@ -16,13 +16,13 @@ Mondo and HPO ontology headers identify 2026-09-01; HPOA identifies 2026-09-02. 
 
 RDF stores facts in named source graphs. RDFS retains the named disease hierarchy. SKOS expresses the source mapping claims; similar labels do not create identity links. Reified statements and PROV-O connect each imported assertion to its source record, frozen file and build activity.
 
-The local OWL definition classifies terminology concepts that have positive phenotype annotations. The reasoner also derives inverse phenotype relations and transitive ancestors. These are real but elementary inferences, not diagnostic or treatment discoveries. SHACL checks selected entity, relationship, mapping and provenance requirements; six deliberately invalid copies fail as expected. Two further probes expose gaps in generic-annotation and conflict coverage.
+The local OWL definition classifies terminology concepts that have positive phenotype annotations. The reasoner also derives inverse phenotype relations and transitive ancestors. These are real but elementary inferences, not diagnostic or treatment discoveries. SHACL checks selected entity, relationship, mapping and provenance requirements; six deliberately invalid copies fail as expected. Generic annotation endpoints are now checked, and a separate evidence report flags exact-IRI positive/excluded pairs for human review.
 
 The eleven SPARQL questions execute. The credibility audit interprets four as answered within scope, four as partially answered and three as unsupported. It explains the difference from the original pipeline's simpler status labels.
 
 ## Verification and reproduction
 
-The 23 tests pass. A separate audit checks 38 source records and all 179 assertion occurrences, covering every one of the 174 source quads. Two workspaces starting without derived outputs reproduce 17 artifacts byte-for-byte. They use the same pinned Python environment and local frozen inputs; a Git clone alone cannot reacquire those files.
+The 29 tests pass. A separate audit checks 38 source records and all 179 assertion occurrences, covering every one of the 174 source quads. Two workspaces starting without derived outputs reproduce 18 artifacts byte-for-byte. They use the same pinned Python environment and local frozen inputs; a Git clone alone cannot reacquire those files.
 
 See [reproduction instructions](docs/REPRODUCING.md). With the required environment and raw files in place:
 
@@ -37,7 +37,7 @@ See [reproduction instructions](docs/REPRODUCING.md). With the required environm
 
 Start with the [credibility audit](reports/CREDIBILITY_AUDIT.md) for methods, join keys, results and qualifications. The [generated build report](reports/FINAL_REPORT.md) retains the original results; its local artifact links require a build. Inspect the [ontology](ontology/core/core.ttl), [shapes](ontology/shapes/shapes.ttl), [implementation](src/clinical_kg/) and [queries](queries/competency/) for technical detail.
 
-The [design decisions](docs/DESIGN_DECISIONS.md), [supervisor questions](docs/SUPERVISOR_DEFENCE_GUIDE.md) and [Protégé guide](docs/PROTEGE_REVIEW_GUIDE.md) support an author-led review. Full OWL DL compatibility, clinical completeness and independent environment reproduction are not established.
+The [design decisions](docs/DESIGN_DECISIONS.md), [supervisor questions](docs/SUPERVISOR_DEFENCE_GUIDE.md) and [Protégé guide](docs/PROTEGE_REVIEW_GUIDE.md) support an author-led review. The installed Protégé OWL API/HermiT libraries verify the repaired review export’s consistency, existential classification and inverse relation. Three provenance-related OWL DL profile violations remain; see the [compatibility follow-up](reports/EXPORT_VALIDATION_FOLLOWUP.md). Full OWL DL compatibility, clinical completeness and independent environment reproduction are not established.
 
 ## Development
 
