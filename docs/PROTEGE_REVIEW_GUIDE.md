@@ -1,6 +1,6 @@
 # Review the model in Protégé
 
-This is a manual understanding exercise. No Protégé session or human design sign-off has been completed by the automated audit. Use copies for experiments and record observations in [DESIGN_DECISIONS.md](DESIGN_DECISIONS.md); do not edit generated artifacts as the way to change the reproducible model.
+This is a manual understanding exercise. The author has accepted the disease-level annotation interpretation in conversation; the remaining design review and a manual Protégé walkthrough are pending. The automated audit does not establish human sign-off. Use copies for experiments and record observations in [DESIGN_DECISIONS.md](DESIGN_DECISIONS.md); do not edit generated artifacts as the way to change the reproducible model.
 
 ## Files and views
 

@@ -2,7 +2,7 @@
 
 This record makes the implemented choices available for author review. It is not a certificate of unaided authorship. The supplied project brief fixed the research scope, source set, provenance requirements and prohibition on unsupported clinical claims. AI assistance translated that brief into code and also proposed the specific OWL vocabulary and modelling choices below.
 
-**Review status: author semantic sign-off pending.** A request to finish or publish documentation does not establish that each axiom has been reviewed. The rationale in this table describes the implemented design; it is not presented as a verbatim record of the author's reasoning.
+**Review status: annotation interpretation accepted; remaining semantic review pending.** A request to finish or publish documentation does not establish that each axiom has been reviewed. The rationale in this table describes the implemented design; it is not presented as a verbatim record of the author's reasoning.
 
 | Decision | Implemented choice and rationale | Alternative or limitation to consider |
 |---|---|---|
@@ -27,4 +27,18 @@ The source evidence and exact classifications of direct, transformed, authored a
 
 For each decision, inspect the cited file and a real example. Then record: decision ID, **accept / revise / reject**, your rationale, the evidence inspected, and the actual review date. If you revise an axiom, explain the intended change in entailments and identify a positive and a negative test. Do not mark this review complete merely because the current tests pass.
 
-No decisions have been marked reviewed here. The first useful author-led review is D3, D5, D7 and D13: they contain the largest modelling trade-offs. This gives you a concrete way to demonstrate design judgment while retaining an accurate account of how the implementation was produced.
+### Accepted annotation interpretation — 2026-09-16
+
+The author explicitly accepted the disease-level annotation interpretation in the project conversation, with the following documentation wording:
+
+> `hasPhenotype` represents a source-provided disease–phenotype annotation. It denotes that a phenotype has been associated with a disease concept in the source data; it does not imply universal manifestation in all individuals with that disease.
+
+> `PhenotypeAnnotatedConcept` denotes a concept with at least one such phenotype annotation.
+
+Here, “such” means a **positive** phenotype annotation. In the implemented definition, the concept is a `DiseaseConcept` and the annotation target is an `HPOTerm`.
+
+**Rationale accepted by the author:** the supplied data describes disease-level annotations, not patient-level observations. This interpretation avoids a universal clinical claim and preserves the meaning of the source evidence. Classification identifies an annotated concept; it does not establish a clinical discovery or an independently corroborated association.
+
+**Review scope:** acceptance covers the conceptual distinction underlying D3, the positive-phenotype meaning in D4, and the intended interpretation of D7. It does not establish approval of shared class/individual IRIs, all aspect mappings, every OWL axiom, or the complete design. The evidence of acceptance is the author's explicit response to the explanation in this conversation; no manual Protégé inspection or source-file review is claimed.
+
+D5's handling of excluded annotations and source disagreement, D13's export choices, and the other unreviewed details remain pending. Earlier AI assistance, including ontology drafting, remains disclosed.
