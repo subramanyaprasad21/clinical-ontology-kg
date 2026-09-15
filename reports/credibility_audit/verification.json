@@ -1,0 +1,205 @@
+{
+  "audit_script_sha256": "ff2241982dc872f5533cca8c8a85959d28e18ad9e3c254d8f35b1a0b677ab367",
+  "checks": [
+    {
+      "check": "Exactly 11 raw biomedical input files",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Manifest paths unique and match raw inventory",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "All frozen SHA-256 and sizes match",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Full named-parent closure matches exported classes",
+      "detail": {
+        "count": 17
+      },
+      "passed": true
+    },
+    {
+      "check": "Every named Mondo subclass edge matches raw XML",
+      "detail": {
+        "anchor_parents": [
+          "http://purl.obolibrary.org/obo/MONDO_0005015"
+        ],
+        "edges": 18
+      },
+      "passed": true
+    },
+    {
+      "check": "Unique T2DM label identifies expected class",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "All ten exact mappings equal raw Mondo assertions",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Anchor xrefs preserved",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Exact synonyms transformed to altLabel without additions",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "OMIM join is explicitly source mapped",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Five HPO rows with P/P/P/I/C aspects",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "HPO source annotation edges match raw aspects and identifiers",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Every HPO label resolves exactly to the raw ontology",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "OT uniquely preserves anchor code and parent",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "OT has five phenotype rows, ten evidence occurrences",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "OT and HPO evidence signatures agree; all OT resource=HPO",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "OT annotation edges match raw rows",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Every mechanism catalog identifier resolves",
+      "detail": {
+        "drug_catalog": 22407,
+        "drug_references": 7924,
+        "records": 6500,
+        "target_catalog": 78691,
+        "target_references": 12698
+      },
+      "passed": true
+    },
+    {
+      "check": "No structured disease/indication columns in target/drug/mechanism schemas",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "All selected-field source record payloads and original IDs match raw records",
+      "detail": {
+        "records": 38
+      },
+      "passed": true
+    },
+    {
+      "check": "179 assertion chains complete and reconstructable to snapshots",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Every one of 174 source quads has verified assertion provenance",
+      "detail": {
+        "covered": 174,
+        "total": 174
+      },
+      "passed": true
+    },
+    {
+      "check": "No source owl:sameAs mappings",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "No nonreflexive inferred owl:sameAs identity merges",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "No synthetic URNs or malformed fixture literals in canonical dataset",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "No invented clinical drug-target predicates",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Exported inference exactly equals independent OWL RL closure delta",
+      "detail": {
+        "exported": 585,
+        "overlap_with_asserted": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "No inferred fact is explicitly present among premises",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Every meaningful inference has a source-premise path and is new",
+      "detail": {
+        "examples": 23
+      },
+      "passed": true
+    },
+    {
+      "check": "Positive-annotation ablation removes both class memberships and inverse facts",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Independent canonical SHACL run conforms",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "All six isolated mutations detect expected violation components",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Invalid-case audit leaves canonical graph unchanged",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "All 11 queries execute and reproduce stored result rows",
+      "detail": null,
+      "passed": true
+    },
+    {
+      "check": "Raw files still match frozen hashes after audit",
+      "detail": null,
+      "passed": true
+    }
+  ],
+  "passed": 35,
+  "total": 35
+}
