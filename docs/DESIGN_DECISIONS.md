@@ -2,7 +2,7 @@
 
 This record makes the implemented choices available for author review. It is not a certificate of unaided authorship. The supplied project brief fixed the research scope, source set, provenance requirements and prohibition on unsupported clinical claims. AI assistance translated that brief into code and also proposed the specific OWL vocabulary and modelling choices below.
 
-**Review status: annotation interpretation accepted; remaining semantic review pending.** A request to finish or publish documentation does not establish that each axiom has been reviewed. The rationale in this table describes the implemented design; it is not presented as a verbatim record of the author's reasoning.
+**Review status: annotation interpretation and evidence-conflict policy accepted; remaining semantic review pending.** A request to finish or publish documentation does not establish that each axiom has been reviewed. The rationale in this table describes the implemented design; it is not presented as a verbatim record of the author's reasoning.
 
 | Decision | Implemented choice and rationale | Alternative or limitation to consider |
 |---|---|---|
@@ -10,7 +10,7 @@ This record makes the implemented choices available for author review. It is not
 | D2. Identity | Keep Mondo and OMIM identifiers; use Mondo's explicit SKOS mapping to join annotations. | Merging identifiers would erase source distinctions. Source exactness is not external adjudication. |
 | D3. Class/concept distinction | Native disease IRIs are OWL classes and also subjects of terminology-level metadata (`DiseaseConcept`). | Separate concept and disease-class IRIs would make the distinction clearer but require a documented linking model. Current RDF metamodeling is not certified OWL DL. |
 | D4. HPO aspects | Map P to `hasPhenotype`, I to `hasInheritanceAnnotation`, C to `hasClinicalModifier`. | Treating all HPO terms as phenotypes would misrepresent onset and inheritance. These remain source annotations, not universal patient claims. |
-| D5. Negative annotations | `hasExcludedPhenotype` records a negated P annotation without creating a positive edge. | It is not an OWL negative-property assertion. Exact-IRI positive/excluded pairs are flagged with both provenance chains for review, without rejecting or resolving disagreement. Human acceptance of this review policy is pending. No negative annotation is present in the canonical selection. |
+| D5. Negative annotations | `hasExcludedPhenotype` records a negated P annotation without creating a positive edge. | It is not an OWL negative-property assertion. Exact-IRI positive/excluded pairs are flagged with both provenance chains for review, without rejecting or resolving disagreement. The author accepted this evidence-preservation and review policy on 2026-09-16; neither source has automatic priority. No negative annotation is present in the canonical selection. |
 | D6. OWL projection | Retain direct named subclass closure; keep nested source restrictions in audit records rather than flattening them into edges. | A proper OWL module extraction would preserve more semantics. The current graph cannot support full-source consistency claims. |
 | D7. Reasoning definition | `PhenotypeAnnotatedConcept ≡ DiseaseConcept and (hasPhenotype some HPOTerm)`. | This is an elementary annotation classification. Domain/range makes much of the type condition redundant; it is not a clinical discovery. |
 | D8. Inverse/property hierarchy | `hasPhenotype` is a subproperty of `hasHPOAnnotation` and inverse of `phenotypeOf`. | This improves navigation and demonstrates entailment, but adds no independent evidence. |
@@ -19,7 +19,7 @@ This record makes the implemented choices available for author review. It is not
 | D11. Unresolved mappings | Retain NANDO as an unresolved xref; import only explicit source mapping predicates. | URI conversion and label similarity alone cannot decide equivalence. |
 | D12. Unsupported joins | Audit drug/target catalogs but omit disconnected instances from the T2DM graph. | Adding structured association/indication data would be a separately justified extension. |
 | D13. Deterministic export | Canonicalize ontology blank nodes and replace them with stable project IRIs; sort RDF output. | Keep this representation for the RDF dataset only. The review export preserves anonymous restrictions and adds explicit declarations. Installed OWL API/HermiT tests pass the selected entailments, with three provenance profile violations retained. |
-| D14. Validation boundary | Validate the asserted projection before inference; test isolated invalid copies. | Generic endpoints now have a shape. A separate report flags exact-IRI positive/excluded pairs; it does not establish clinical contradiction or propagate conflicts through mappings. Human policy review is pending. |
+| D14. Validation boundary | Validate the asserted projection before inference; test isolated invalid copies. | Generic endpoints now have a shape. A separate report flags exact-IRI positive/excluded pairs; it does not establish clinical contradiction or propagate conflicts through mappings. The author accepted the conflict-review policy on 2026-09-16; the remaining validation boundary is still subject to review. |
 
 The source evidence and exact classifications of direct, transformed, authored and inferred statements are in the [credibility audit](../reports/CREDIBILITY_AUDIT.md). The vocabulary is in [core.ttl](../ontology/core/core.ttl); conversion choices are in [graph.py](../src/clinical_kg/graph.py).
 
@@ -41,4 +41,16 @@ Here, “such” means a **positive** phenotype annotation. In the implemented d
 
 **Review scope:** acceptance covers the conceptual distinction underlying D3, the positive-phenotype meaning in D4, and the intended interpretation of D7. It does not establish approval of shared class/individual IRIs, all aspect mappings, every OWL axiom, or the complete design. The evidence of acceptance is the author's explicit response to the explanation in this conversation; no manual Protégé inspection or source-file review is claimed.
 
-D5's handling of excluded annotations and source disagreement, D13's export choices, and the other unreviewed details remain pending. Earlier AI assistance, including ontology drafting, remains disclosed.
+### Accepted evidence-conflict policy — 2026-09-16
+
+The author explicitly accepted retaining both positive and excluded phenotype annotations with their individual provenance and supplied this wording:
+
+> Conflicting positive and excluded phenotype annotations are both retained with source provenance. Their coexistence is represented as a conflict condition for downstream review or analysis; neither assertion is discarded or automatically privileged.
+
+**Rationale accepted by the author:** preserve the evidence first; resolve disagreement only when there is a defensible resolution rule. No source automatically dominates another. Introducing an evidence hierarchy later requires an explicit, separately reviewed policy.
+
+**Implementation boundary:** the current detector flags positive/excluded assertions for the same disease IRI and phenotype IRI, including same-source and cross-source cases. It retains both provenance chains and reports the pair for human review. This is an evidence-conflict flag, not a claim that the OWL ontology is inconsistent or that the annotations have identical clinical context. The detector does not propagate conflicts through mappings or adjudicate source reliability. The frozen selection contains no such pair; regression cases exercise the policy.
+
+**Review scope:** this accepts the evidence-preservation and conflict-review policy in D5 and the corresponding reporting policy in D14. It does not certify every validation constraint or endorse a particular formal negation representation. Acceptance was expressed in this conversation; no manual inspection of source files or Protégé is claimed.
+
+D13's export choices and other unreviewed details remain pending. Earlier AI assistance, including ontology drafting, remains disclosed.
