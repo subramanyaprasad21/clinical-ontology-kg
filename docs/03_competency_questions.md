@@ -17,3 +17,5 @@ Every question has an executable `.rq` file in `queries/competency/`. The build 
 | 11 | Which graph records violate constraints? | Canonical SHACL result graph; zero rows means no detected violations |
 
 The sixth invalid-data demonstration and all other synthetic mutations are reported separately in `reports/tables/invalid_cases.json`, not mixed into canonical query results. `queries/analysis/missing_provenance.rq` provides an additional record-chain check. The Python dataset-aware check also detects source quads lacking any reified provenance assertion, which a query over only statement records would miss.
+
+The [credibility audit](../reports/CREDIBILITY_AUDIT.md) qualifies the original machine statuses: four questions are answered within scope, four are partially answered and three remain unsupported. The saved query rows are unchanged; the distinction concerns what the results establish scientifically.
