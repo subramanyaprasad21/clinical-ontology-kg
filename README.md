@@ -18,13 +18,13 @@ Eleven frozen files yield 17 named hierarchy classes, five HPO terms, three posi
 
 - 160 unique asserted triples; 174 source quads; 179 assertion occurrences from 38 records.
 - 31/31 tests and 35/35 separate audit checks pass.
-- Two clean-output builds reproduce 20 artifacts byte-for-byte in the same installed environment.
+- Two clean-output builds reproduce 20 artifacts byte-for-byte. A new virtual environment with freshly installed pinned packages also reproduces all 20 artifacts and passes the tests and separate audit on the same host.
 - Eleven competency queries execute; the evidence assessment identifies four answered within scope, four partially answered and three unsupported.
 - The installed OWL API 4.5.29 detects zero OWL 2 DL profile violations in `reasoning.ttl`. HermiT 1.4.3.456 derives the selected classification and inverse; removing positive premises removes those entailments.
 
 ## Limitations
 
-The full review export retains three provenance-related OWL profile violations. The reasoning projection does not validate the complete upstream ontologies. Source agreement is not independent corroboration: Open Targets repeats HPO-derived evidence. Neither SHACL conformity nor an inferred graph connection establishes clinical truth. Raw acquisition, fresh-environment reproduction and a manual Protégé walkthrough have not been demonstrated.
+The full review export retains three provenance-related OWL profile violations. The reasoning projection does not validate the complete upstream ontologies. Source agreement is not independent corroboration: Open Targets repeats HPO-derived evidence. Neither SHACL conformity nor an inferred graph connection establishes clinical truth. Raw acquisition, cross-platform reproduction and a manual Protégé walkthrough have not been demonstrated.
 
 ## Reproduction
 
@@ -43,4 +43,4 @@ See [reproduction instructions](docs/REPRODUCING.md) for the offline OWL library
 
 ## Repository map
 
-[Current model](docs/04_ontology_design_notes.md), [validation results](docs/validation_results.md), [documentation map](docs/README.md), [source code](src/clinical_kg/), [ontology](ontology/core/core.ttl), [SHACL shapes](ontology/shapes/shapes.ttl), [queries](queries/competency/) and [attribution](ATTRIBUTION.md).
+[Evaluation](docs/EVALUATION.md), [current model](docs/04_ontology_design_notes.md), [validation results](docs/validation_results.md), [documentation map](docs/README.md), [source code](src/clinical_kg/), [ontology](ontology/core/core.ttl), [SHACL shapes](ontology/shapes/shapes.ttl), [queries](queries/competency/) and [attribution](ATTRIBUTION.md).

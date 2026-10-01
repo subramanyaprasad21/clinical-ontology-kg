@@ -1,0 +1,100 @@
+{
+  "python": "3.12.7",
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "requirements_sha256": "517dd83a5935dba61e9fe72a2e3b5ac18c2c1704c2112f637323d43d6d9a5543",
+  "scope": "New virtual environment and empty output workspace; same host, base Python and hard-linked frozen raw files.",
+  "steps": {
+    "install": 0,
+    "dependency_check": 0,
+    "build": 0,
+    "tests": 0,
+    "audit": 0
+  },
+  "packages": [
+    {
+      "name": "html5rdf",
+      "version": "1.2.1"
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.0"
+    },
+    {
+      "name": "owlrl",
+      "version": "7.6.2"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "pip",
+      "version": "24.2"
+    },
+    {
+      "name": "pluggy",
+      "version": "1.6.0"
+    },
+    {
+      "name": "prettytable",
+      "version": "3.18.0"
+    },
+    {
+      "name": "pyarrow",
+      "version": "25.0.1"
+    },
+    {
+      "name": "Pygments",
+      "version": "2.21.0"
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.3.2"
+    },
+    {
+      "name": "pyshacl",
+      "version": "0.40.1"
+    },
+    {
+      "name": "pytest",
+      "version": "9.1.1"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3"
+    },
+    {
+      "name": "rdflib",
+      "version": "7.6.0"
+    },
+    {
+      "name": "wcwidth",
+      "version": "0.8.3"
+    }
+  ],
+  "artifact_sha256": {
+    "data/processed/asserted.ttl": "7a5863fbc3d5249f6483a1d12f230caa89e47b7bb90e308f9de3fb3e42722ed4",
+    "data/processed/inferred.ttl": "3523b9070ddbfdaf7699bebe767b3ccf087122a4cf56c591da0a957ca537d6b2",
+    "data/processed/knowledge_graph.nq": "171a0614e395ac4e6b22cae54e9487af259457b5fdbab8add4e3c9adef15c9c8",
+    "data/processed/mappings.ttl": "5ece895e769a419ea5e2f8b648652baa98e49f2762354562b42a644d3e8a57eb",
+    "data/processed/provenance.ttl": "d3b9a233953b02bb065515f6a56d64d13ff069e276265c6dfec11d7e7f64cf2e",
+    "data/processed/reasoning.ttl": "081bb8ae8d4888d8d8056c0d704f8ea95b7d9f06013751055488321d1b7be8c9",
+    "data/processed/review.ttl": "4fcc38a2eee507986331b55a1b81d3d16f6de5ab8dc06bf675568b9d2c5711f7",
+    "data/interim/audit.json": "a4005a41684aaca6d1a3444890bff78a520a007e77485360dd959cba6883ff52",
+    "reports/metrics.json": "d1b68f312ee7559687fb94860970859250e97bd23be46ec0d459332c6a6ed1f6",
+    "reports/FINAL_REPORT.md": "d9df50bf583d75ed3ef5a239db668799db4a72ef5ecb62d4832a556d177e8d39",
+    "reports/validation.ttl": "86bfd457468be247fc763f8f70ca0705a60aed2a13101abcff5df0e8594712d0",
+    "reports/validation.txt": "77debc800e6c973b66475968bdf71e2e667df8f4108e7f5299fe1651e6606dc9",
+    "reports/artifact_checksums.json": "3a1a26d0befb4f427200996eb000e509c9da72276b55e5835314a275b57657b1",
+    "reports/tables/competency_results.json": "83fc638acd8b9da748bc27d64f65e0c785e256b0e699db1f999dccc305a94e76",
+    "reports/tables/input_schemas.json": "ed0d48f4875231c0218dbfca0f87a955620e8c4cdfe71e81e92709e84a12e54e",
+    "reports/tables/invalid_cases.json": "d3d0b4dc72170d49e8cab4f5bb03fabc28c347296bfaaf9d1f893e47d4463b81",
+    "reports/tables/mapping_candidates.json": "e2935ec2321c81db7ef0ec97e0c57707dddf665a94932e9dc7715b281fa6e686",
+    "reports/tables/phenotype_conflicts.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "reports/tables/reasoning_examples.json": "17d982111169bade69aa5f0c58fc3d55edf570f3ef9f052c7c0fdb9d63616421",
+    "reports/tables/reasoning_export.json": "5952490938ef77b50cc25a63295901f50a1dbd0ce56708d3f5d28c6cc506efe7"
+  },
+  "compared_artifacts": 20,
+  "differences": [],
+  "byte_identical": true
+}

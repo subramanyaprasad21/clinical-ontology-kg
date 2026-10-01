@@ -58,3 +58,11 @@ export KG_JAVA_HOME='/path/to/jdk/Contents/Home'
 ```
 
 The check requires zero profile violations for `reasoning.ttl`, consistency, the selected classification and inverse, and loss of those entailments after removing six positive annotation assertions from an in-memory copy. The full `review.ttl` retains three reported profile violations. This is a library-level check, not a GUI inspection or a full-source consistency result.
+
+## Fresh dependency installation
+
+```sh
+.venv/bin/python audit/fresh_environment.py
+```
+
+This creates a new virtual environment, installs pinned packages with the pip cache disabled, runs `pip check`, builds in a separate empty workspace, runs tests and the separate audit, and compares 20 artifacts with recorded outputs. Package installation requires network access. The same host, base Python and hard-linked frozen raw inputs are reused. Results are saved in `reports/fresh_environment/result.json`; temporary paths in execution logs remain local.

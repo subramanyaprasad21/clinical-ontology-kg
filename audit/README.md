@@ -16,3 +16,5 @@ The tracked summaries are `reports/credibility_audit/verification.json` and `cle
 The production repeatability script still performs two in-place builds. This separate audit establishes clean-output repeatability without rewriting the original verification record. Neither workflow reacquires raw files or proves cross-platform reproduction.
 
 The OWL library check and configurable installation paths are documented in [reproduction instructions](../docs/REPRODUCING.md).
+
+`fresh_environment.py` additionally installs pinned dependencies in a new virtual environment with pip's cache disabled, checks dependency consistency, and runs a clean build, tests and the separate audit. All 20 artifact hashes match the recorded outputs on the same host. See `reports/fresh_environment/result.json`.

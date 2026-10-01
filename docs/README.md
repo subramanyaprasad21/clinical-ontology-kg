@@ -2,6 +2,8 @@
 
 ## Current summaries
 
+- [Evaluation and design assessment](EVALUATION.md): executed evidence, design rationale and remaining verification limits.
+
 - [Repository overview](../README.md): implemented scope, measured results and limitations.
 - [Semantic model](04_ontology_design_notes.md): annotation meaning, reasoning and export boundaries.
 - [Validation results](validation_results.md): current checks and their limits.

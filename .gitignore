@@ -31,3 +31,6 @@ reports/credibility_audit/query_checks.json
 reports/credibility_audit/raw_schemas.json
 reports/credibility_audit/inference_chains.json
 reports/credibility_audit/shacl_checks.json
+
+# Fresh-environment execution logs contain temporary host paths.
+reports/fresh_environment/*.log
