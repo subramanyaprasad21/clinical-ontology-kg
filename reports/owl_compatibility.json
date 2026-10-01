@@ -29,6 +29,9 @@
       "consistent": true,
       "t2dm_annotation_class_entailed": false,
       "inverse_entailed": false,
+      "removed_positive_assertions": 0,
+      "classification_after_positive_ablation": false,
+      "inverse_after_positive_ablation": false,
       "sha256": "3a096ad77436ddb8ef7a4e46be320f4610798ad39089cd649ea15a4003ae36d2"
     },
     "data/processed/review.ttl": {
@@ -47,7 +50,27 @@
       "consistent": true,
       "t2dm_annotation_class_entailed": true,
       "inverse_entailed": true,
+      "removed_positive_assertions": 6,
+      "classification_after_positive_ablation": false,
+      "inverse_after_positive_ablation": false,
       "sha256": "4fcc38a2eee507986331b55a1b81d3d16f6de5ab8dc06bf675568b9d2c5711f7"
+    },
+    "data/processed/reasoning.ttl": {
+      "file": "reasoning.ttl",
+      "axioms": 225,
+      "equivalent_class_axioms": 1,
+      "object_property_assertions": 20,
+      "dl_profile_violations": [],
+      "definitions": [
+        "EquivalentClasses(<https://example.org/clinical-kg/PhenotypeAnnotatedConcept> ObjectIntersectionOf(<https://example.org/clinical-kg/DiseaseConcept> ObjectSomeValuesFrom(<https://example.org/clinical-kg/hasPhenotype> <https://example.org/clinical-kg/HPOTerm>)))"
+      ],
+      "consistent": true,
+      "t2dm_annotation_class_entailed": true,
+      "inverse_entailed": true,
+      "removed_positive_assertions": 6,
+      "classification_after_positive_ablation": false,
+      "inverse_after_positive_ablation": false,
+      "sha256": "081bb8ae8d4888d8d8056c0d704f8ea95b7d9f06013751055488321d1b7be8c9"
     }
   }
 }

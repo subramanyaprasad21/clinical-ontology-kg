@@ -1,8 +1,9 @@
 {
   "data/processed/asserted.ttl": "7a5863fbc3d5249f6483a1d12f230caa89e47b7bb90e308f9de3fb3e42722ed4",
   "data/processed/inferred.ttl": "3523b9070ddbfdaf7699bebe767b3ccf087122a4cf56c591da0a957ca537d6b2",
-  "data/processed/knowledge_graph.nq": "b2a6c5c1f7c5ff2f4fe6da355d6b5a431f27b38f3f40897463a765bd0e0daee8",
+  "data/processed/knowledge_graph.nq": "171a0614e395ac4e6b22cae54e9487af259457b5fdbab8add4e3c9adef15c9c8",
   "data/processed/mappings.ttl": "5ece895e769a419ea5e2f8b648652baa98e49f2762354562b42a644d3e8a57eb",
-  "data/processed/provenance.ttl": "e51c2e0d54178ea058e915c487c6a614f5a66ae63d0fcf871bdbad7e568f9e95",
+  "data/processed/provenance.ttl": "d3b9a233953b02bb065515f6a56d64d13ff069e276265c6dfec11d7e7f64cf2e",
+  "data/processed/reasoning.ttl": "081bb8ae8d4888d8d8056c0d704f8ea95b7d9f06013751055488321d1b7be8c9",
   "data/processed/review.ttl": "4fcc38a2eee507986331b55a1b81d3d16f6de5ab8dc06bf675568b9d2c5711f7"
 }

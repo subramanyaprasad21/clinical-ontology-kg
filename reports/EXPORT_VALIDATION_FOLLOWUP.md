@@ -1,5 +1,7 @@
 # Export and validation follow-up
 
+This report records the earlier repair. The [2026-10-01 follow-up](OWL_PROJECTION_REVIEW.md) adds a separately scoped reasoning export; the full review limitations below remain applicable.
+
 The review export now preserves the existential restriction when loaded by the installed Protégé libraries. Generic annotation endpoints have a SHACL shape. A separate report flags positive/excluded phenotype pairs for evidence review without deleting either assertion or declaring a clinical contradiction.
 
 ## OWL export finding and repair

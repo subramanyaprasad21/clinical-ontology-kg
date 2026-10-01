@@ -12,7 +12,7 @@ from .audit import audit
 from .graph import Builder, KG, serialize_dataset, serialize_sorted
 from .inputs import ANCHOR, digest, dump, inventory, verify
 from .reasoning import reason
-from .review import review_graph
+from .review import review_graph, reasoning_graph
 from .validation import invalid_demonstrations, provenance_coverage, run_shacl, union, phenotype_conflicts
 
 
@@ -87,6 +87,9 @@ def build(root):
     serialize_sorted(builder.prov, out / 'provenance.ttl')
     review = review_graph(root, asserted)
     serialize_sorted(review, out / 'review.ttl')
+    reasoning_review, export_manifest = reasoning_graph(root, asserted)
+    serialize_sorted(reasoning_review, out / 'reasoning.ttl')
+    dump(root / 'reports/tables/reasoning_export.json', export_manifest)
     conflicts = phenotype_conflicts(asserted, builder.prov)
     dump(root / 'reports/tables/phenotype_conflicts.json', conflicts)
     mappings = Graph()
@@ -99,7 +102,7 @@ def build(root):
     if set(reparsed.quads()) != set(builder.ds.quads()):
         raise ValueError('Dataset serialization round-trip changed quads')
     for name, graph in [('asserted', asserted), ('inferred', inferred), ('provenance', builder.prov),
-                        ('review', review), ('mappings', mappings)]:
+                        ('review', review), ('reasoning', reasoning_review), ('mappings', mappings)]:
         if not isomorphic(Graph().parse(out / (name + '.ttl'), format='turtle'), graph):
             raise ValueError(f'{name} Turtle round-trip changed triples')
     dump(root / 'reports/tables/mapping_candidates.json', candidates)

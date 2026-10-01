@@ -34,6 +34,17 @@ public class CheckOntology {
             OWLNamedIndividual hp = df.getOWLNamedIndividual(IRI.create("http://purl.obolibrary.org/obo/HP_0000855"));
             out.put("inverse_entailed", reasoner.isEntailed(df.getOWLObjectPropertyAssertionAxiom(inverse,hp,t)));
             reasoner.dispose();
+            OWLObjectProperty positive = df.getOWLObjectProperty(IRI.create("https://example.org/clinical-kg/hasPhenotype"));
+            Set<OWLAxiom> removed = new HashSet<>();
+            ontology.getAxioms(AxiomType.OBJECT_PROPERTY_ASSERTION).forEach(a -> {
+                if (a.getProperty().equals(positive)) removed.add(a);
+            });
+            manager.removeAxioms(ontology, removed);
+            OWLReasoner ablated = new Reasoner.ReasonerFactory().createReasoner(ontology);
+            out.put("removed_positive_assertions", removed.size());
+            out.put("classification_after_positive_ablation", ablated.isEntailed(df.getOWLClassAssertionAxiom(c,t)));
+            out.put("inverse_after_positive_ablation", ablated.isEntailed(df.getOWLObjectPropertyAssertionAxiom(inverse,hp,t)));
+            ablated.dispose();
         } catch (Exception ex) { out.put("reasoner_error", ex.toString()); }
         System.out.println("RESULT_JSON=" + new ObjectMapper().writeValueAsString(out));
     }

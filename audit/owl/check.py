@@ -37,7 +37,7 @@ with tempfile.TemporaryDirectory(prefix='kg-owl-') as tmp:
     subprocess.run([str(args.java_home / 'bin/javac'), '-cp', cp, '-d', tmp,
                     str(root / 'audit/owl/CheckOntology.java')], check=True)
     results = {}
-    for relative in ('ontology/core/core.ttl', 'data/processed/review.ttl'):
+    for relative in ('ontology/core/core.ttl', 'data/processed/review.ttl', 'data/processed/reasoning.ttl'):
         run = subprocess.run([str(args.java_home / 'bin/java'), '-cp', cp,
                               'CheckOntology', str(root / relative)], capture_output=True, text=True, check=True)
         rows = [line.removeprefix('RESULT_JSON=') for line in run.stdout.splitlines() if line.startswith('RESULT_JSON=')]
@@ -51,4 +51,14 @@ with tempfile.TemporaryDirectory(prefix='kg-owl-') as tmp:
     for check in ('consistent', 't2dm_annotation_class_entailed', 'inverse_entailed'):
         if review.get(check) is not True:
             raise SystemExit(f'FAILED: {check}; inspect {args.output}')
-    print(f'PASS: consistency, existential classification, inverse; {len(review["dl_profile_violations"])} DL profile violations retained.')
+    projection = results['data/processed/reasoning.ttl']
+    for check in ('consistent', 't2dm_annotation_class_entailed', 'inverse_entailed'):
+        if projection.get(check) is not True:
+            raise SystemExit(f'FAILED reasoning projection: {check}; inspect {args.output}')
+    if projection['dl_profile_violations']:
+        raise SystemExit(f'FAILED reasoning projection DL profile; inspect {args.output}')
+    if (projection.get('removed_positive_assertions') != 6
+            or projection.get('classification_after_positive_ablation') is not False
+            or projection.get('inverse_after_positive_ablation') is not False):
+        raise SystemExit(f'FAILED reasoning projection ablation; inspect {args.output}')
+    print(f'PASS: both exports retain selected entailments; reasoning projection has zero DL profile violations. Full review retains {len(review["dl_profile_violations"])}.')

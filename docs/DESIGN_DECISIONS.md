@@ -53,4 +53,4 @@ The author explicitly accepted retaining both positive and excluded phenotype an
 
 **Review scope:** this accepts the evidence-preservation and conflict-review policy in D5 and the corresponding reporting policy in D14. It does not certify every validation constraint or endorse a particular formal negation representation. Acceptance was expressed in this conversation; no manual inspection of source files or Protégé is claimed.
 
-D13's export choices and other unreviewed details remain pending. Earlier AI assistance, including ontology drafting, remains disclosed.
+D13's export choices and other unreviewed details remain pending. A separate OWL reasoning projection was implemented and tested on 2026-10-01; its [scope and proposed boundary](../reports/OWL_PROJECTION_REVIEW.md) await author acceptance. This is not approval inferred from a request to continue work. Earlier AI assistance, including ontology drafting, remains disclosed.

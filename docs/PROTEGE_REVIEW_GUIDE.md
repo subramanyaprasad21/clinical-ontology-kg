@@ -8,6 +8,8 @@ Start with `ontology/core/core.ttl` to inspect the local definition in isolation
 
 Protégé's [view reference](https://protegeproject.github.io/protege/views/) describes the class hierarchy, class description, object property description, annotations and individual views. If a view is missing, add it through **Window → Views**. Exact tab arrangements can differ by installation. Use the search/find facility with the identifier suffixes below rather than relying on label rendering.
 
+For the profile-checked reasoning view, open `data/processed/reasoning.ttl`. It preserves the asserted source facts and terminology axioms while excluding the explicitly listed provenance schema; see [the projection review](../reports/OWL_PROJECTION_REVIEW.md). The combined `review.ttl` retains its documented profile violations.
+
 ## Walkthrough
 
 | Inspect | Entity or view | What to establish |

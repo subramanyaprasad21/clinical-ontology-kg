@@ -62,3 +62,28 @@ def test_conflict_review_preserves_both_records_and_graphs(same_source):
     graph.remove((KG.disease, KG.hasExcludedPhenotype, KG['term']))
     graph.add((KG.disease, KG.hasExcludedPhenotype, KG.otherTerm))
     assert phenotype_conflicts(graph, provenance) == []
+
+
+def test_reasoning_projection_has_exact_auditable_boundary(tmp_path):
+    from clinical_kg.review import reasoning_graph
+    asserted = Graph().parse(ROOT / 'data/processed/asserted.ttl')
+    full = review_graph(ROOT, asserted)
+    projected, manifest = reasoning_graph(ROOT, asserted)
+    assert set(asserted) <= set(projected)
+    excluded = Graph().parse(data='\n'.join(manifest['excluded_triples']), format='nt')
+    assert len(excluded) == manifest['excluded_triple_count'] == 13
+    assert isomorphic(full, projected + excluded)
+    assert (KG.ImportedAssertion, RDF.type, OWL.Class) in excluded
+    assert (RDF.Statement, RDF.type, OWL.Class) in excluded
+    a, b = tmp_path / 'a.ttl', tmp_path / 'b.ttl'
+    serialize_sorted(projected, a)
+    serialize_sorted(reasoning_graph(ROOT, asserted)[0], b)
+    assert a.read_bytes() == b.read_bytes()
+
+
+def test_reasoning_projection_rejects_source_use_of_excluded_vocabulary():
+    from clinical_kg.review import reasoning_graph
+    asserted = Graph()
+    asserted.add((KG.example, RDF.type, KG.SourceRecord))
+    with pytest.raises(ValueError, match='excluded provenance vocabulary'):
+        reasoning_graph(ROOT, asserted)
