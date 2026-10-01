@@ -2,6 +2,8 @@
 
 This guide covers inspection of the bounded terminology model. Automated library checks do not establish a completed GUI walkthrough. Use copies for experiments and compare observations with the [semantic model](04_ontology_design_notes.md). Generated artifacts are rebuilt from source definitions.
 
+The selected GUI classification and inverse results are recorded in [observations](PROTEGE_OBSERVATIONS.md). The remaining guide describes additional inspection, not completed checks.
+
 ## Files and views
 
 Start with `ontology/core/core.ttl` to inspect the local definition in isolation. Then open the generated `data/processed/review.ttl` in a separate window for the source facts plus schema. Build it first with `.venv/bin/python scripts/build.py` if it is absent. The raw 242 MB Mondo ontology is not needed for this initial walkthrough.

@@ -24,7 +24,7 @@ Eleven frozen files yield 17 named hierarchy classes, five HPO terms, three posi
 
 ## Limitations
 
-The full review export retains three provenance-related OWL profile violations. The reasoning projection does not validate the complete upstream ontologies. Source agreement is not independent corroboration: Open Targets repeats HPO-derived evidence. Neither SHACL conformity nor an inferred graph connection establishes clinical truth. Raw acquisition, cross-platform reproduction and a manual Protégé walkthrough have not been demonstrated.
+The full review export retains three provenance-related OWL profile violations. The reasoning projection does not validate the complete upstream ontologies. Source agreement is not independent corroboration: Open Targets repeats HPO-derived evidence. Neither SHACL conformity nor an inferred graph connection establishes clinical truth. Raw acquisition and cross-platform reproduction have not been demonstrated. Selected [Protégé GUI checks](docs/PROTEGE_OBSERVATIONS.md) confirm the classification and inverse relations; they do not constitute an exhaustive axiom review.
 
 ## Reproduction
 

@@ -2,6 +2,10 @@
 
 ## Current summaries
 
+- [Extension feasibility](EXTENSION_FEASIBILITY.md): candidate sources and unverified acquisition requirements.
+
+- [Protégé observations](PROTEGE_OBSERVATIONS.md): recorded classification and inverse-relation views.
+
 - [Evaluation and design assessment](EVALUATION.md): executed evidence, design rationale and remaining verification limits.
 
 - [Repository overview](../README.md): implemented scope, measured results and limitations.

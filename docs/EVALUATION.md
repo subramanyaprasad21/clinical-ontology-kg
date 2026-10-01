@@ -11,7 +11,7 @@ This is the current evaluation of the bounded T2DM integration. Historical audit
 | Clean-output reproduction | Two workspaces reproduce 20 artifacts byte-for-byte | Shared installed environment, different hash seeds |
 | Fresh installation | Install, dependency check, build, 31 tests and 35 audit checks pass; 20 artifacts match byte-for-byte | New virtual environment on the same host and base Python; raw files reused |
 | OWL projection | Zero DL profile violations; selected HermiT entailments and premise-removal control pass | `reasoning.ttl` only; full review retains three violations |
-| GUI inspection | File loading could not be completed through the available desktop input connection | No GUI reasoner result or screenshot evidence is claimed |
+| GUI inspection | Two inferred concept instances, Mondo classification and two insulin-resistance inverse links observed | Selected views in `reasoning.ttl`; see [observations](PROTEGE_OBSERVATIONS.md) |
 
 The fresh-environment procedure creates a virtual environment without system packages, installs the pinned requirements with pip's cache disabled, runs `pip check`, builds in a workspace without derived outputs, runs the regression suite and separate audit, and compares all selected artifacts against the recorded outputs. Its result records package versions, exit codes, requirements hash and artifact hashes. This extends the earlier clean-output check; it does not test another operating system, independently install Python, or reacquire raw files.
 
@@ -34,8 +34,8 @@ The fresh-environment procedure creates a virtual environment without system pac
 | D13 exports | Use the explicitly scoped reasoning projection for DL checks and the dataset for provenance. The 13 exclusions are auditable; this does not repair or certify the full review ontology. |
 | D14 validation | Keep pre-inference shapes and separate conflict reporting. Neither establishes clinical truth or complete constraint coverage. |
 
-These conclusions assess the implemented model against its source scope and tests. They do not establish that every design choice is uniquely correct, that the ontology was independently authored, or that a GUI walkthrough has taken place. Attribution is recorded separately in [ATTRIBUTION.md](../ATTRIBUTION.md).
+These conclusions assess the implemented model against its source scope and tests. They do not establish that every design choice is uniquely correct, that the ontology was independently authored or that every axiom has been inspected. Attribution is recorded separately in [ATTRIBUTION.md](../ATTRIBUTION.md).
 
 ## Remaining verification boundary
 
-The GUI walkthrough remains unverified until the actual exported file is loaded and the relevant views and reasoner results are observed. The library-level checks already exercise the installed OWL API and HermiT versions. Missing acquisition history and the absence of structured T2DM drug/target data remain source limitations, not implementation defects.
+The selected GUI classification and inverse checks are now observed. The broader inspection guide is not an exhaustive completed axiom review. The library-level checks already exercise the installed OWL API and HermiT versions. Missing acquisition history and the absence of structured T2DM drug/target data remain source limitations, not implementation defects.
