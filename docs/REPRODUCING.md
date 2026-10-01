@@ -27,7 +27,7 @@ The build verifies hashes, runs the source audit, constructs the projected graph
 .venv/bin/python scripts/query.py queries/competency/03_phenotype_evidence.rq
 ```
 
-The first command runs the separate 35-check audit. The second constructs two temporary workspaces with empty derived-output directories, links the same read-only raw inputs, varies the Python hash seed, runs the original tests in each, and compares 17 artifacts byte-for-byte. It requires a filesystem that supports the hard links used by the script. Both share the installed environment; neither tests package installation or raw acquisition on another machine.
+The first command runs the separate 35-check audit. The second constructs two temporary workspaces with empty derived-output directories, links the same read-only raw inputs, varies the Python hash seed, runs 31 tests in each, and compares 20 artifacts byte-for-byte. It requires a filesystem that supports the hard links used by the script. Both share the installed environment; neither tests package installation or raw acquisition on another machine.
 
 The earlier `scripts/check_reproducibility.py` checks two in-place builds instead. Its retained summary is valid evidence for that narrower procedure. No original result was overwritten to pretend it came from a clean workspace.
 
@@ -36,6 +36,7 @@ The earlier `scripts/check_reproducibility.py` checks two in-place builds instea
 | Local path | Purpose |
 |---|---|
 | `data/processed/knowledge_graph.nq` | Source, schema, provenance, inference and validation named graphs |
+| `data/processed/reasoning.ttl` | OWL reasoning projection; exclusions listed in `reports/tables/reasoning_export.json` |
 | `data/processed/review.ttl` | Source union plus schema for review; graph separation is lost |
 | `data/processed/asserted.ttl`, `inferred.ttl` | Separate source and reasoner views |
 | `data/processed/provenance.ttl`, `mappings.ttl` | Record/statement lineage and mapping view |
@@ -43,3 +44,17 @@ The earlier `scripts/check_reproducibility.py` checks two in-place builds instea
 | `reports/credibility_audit/` | Separate audit summaries and detailed local comparisons |
 
 Tracked [verification](../reports/credibility_audit/verification.json) and [clean-build](../reports/credibility_audit/clean_builds.json) summaries record the executed audit. Detailed evidence files are generated locally. The original generated report contains links to those local artifacts; their absence in a bare Git checkout is expected, not evidence that the computations ran there.
+
+## OWL profile and entailment checks
+
+The tested libraries are OWL API 4.5.29 and HermiT 1.4.3.456 from Protégé 5.6.9, with JDK 17. The check compiles its Java probe locally and requires no download. Set these variables to the installed application contents and JDK directories:
+
+```sh
+export KG_PROTEGE_CONTENTS='/path/to/Protege.app/Contents'
+export KG_JAVA_HOME='/path/to/jdk/Contents/Home'
+.venv/bin/python audit/owl/check.py \
+  --protege-contents "$KG_PROTEGE_CONTENTS" \
+  --java-home "$KG_JAVA_HOME"
+```
+
+The check requires zero profile violations for `reasoning.ttl`, consistency, the selected classification and inverse, and loss of those entailments after removing six positive annotation assertions from an in-memory copy. The full `review.ttl` retains three reported profile violations. This is a library-level check, not a GUI inspection or a full-source consistency result.

@@ -1,6 +1,6 @@
 # Review the model in Protégé
 
-This is a manual understanding exercise. The author has accepted the disease-level annotation interpretation and evidence-conflict policy in conversation; the remaining design review and a manual Protégé walkthrough are pending. The automated audit does not establish human sign-off. Use copies for experiments and record observations in [DESIGN_DECISIONS.md](DESIGN_DECISIONS.md); do not edit generated artifacts as the way to change the reproducible model.
+This guide covers inspection of the bounded terminology model. Automated library checks do not establish a completed GUI walkthrough. Use copies for experiments and compare observations with the [semantic model](04_ontology_design_notes.md). Generated artifacts are rebuilt from source definitions.
 
 ## Files and views
 
@@ -57,4 +57,4 @@ Choose a phenotype assertion and follow its record locator to the source file, o
 
 Useful views to save for your own review are: the T2DM direct hierarchy, the local equivalent-class definition, the property inverse/subproperty description, an individual's positive versus inheritance/onset relations, and a successful inferred-type view **or the actual reasoner warning**. Label each image with the file and whether it shows asserted, loaded materialized, or newly reasoned content. Screenshots support your understanding; they are not substitutes for the executed checks.
 
-Finish by recording what you accepted, what you would change, and what your installed tools could not verify. Human review remains pending until those observations actually exist.
+Finish by recording what you accepted, what you would change, and what your installed tools could not verify. A walkthrough result requires recorded observations.

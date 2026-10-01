@@ -1,6 +1,6 @@
 # Questions for a supervisor discussion
 
-Use these as prompts for explaining the actual repository. The answers describe the current implementation, not claims to recite without understanding. Open a source row or axiom while answering. The [design record](DESIGN_DECISIONS.md) separates supplied requirements from choices still awaiting author review.
+These questions explain the current implementation and its evidence boundaries. Refer to the [semantic model](04_ontology_design_notes.md) and the source artifacts for the implemented choices.
 
 1. **What is the research question?** Can the supplied Mondo, HPO and Open Targets records be integrated around T2DM while retaining identity, evidence, provenance and explicit limits? The result is an engineering case study, not a new clinical ontology. See the [charter](00_project_charter.md).
 
@@ -48,14 +48,12 @@ Use these as prompts for explaining the actual repository. The answers describe 
 
 23. **Why named graphs, and is RDF-star used?** Named graphs distinguish source deliveries, schema, inference, validation and provenance even where the fact triples coincide. Flattened Turtle loses that context. RDF-star is not used; provenance relies on RDF statement reification and PROV-O.
 
-24. **What does SHACL establish, and what escaped it?** Eight shapes check selected entity, relation, mapping, record and snapshot requirements. Six isolated mutations produce their expected violations. A malformed generic annotation and a simultaneous positive/excluded assertion pass the current shapes. Conformity therefore is not a general semantic-quality certificate.
+24. **What does SHACL establish, and what escaped it?** Nine shapes check selected entity, relation, mapping, record and snapshot requirements. Six isolated mutations produce their expected violations. Malformed generic endpoints are rejected. Positive/excluded pairs are flagged by a separate evidence report. Conformity therefore is not a general semantic-quality certificate.
 
-25. **How are conflicts and negation treated?** A negated P record uses `hasExcludedPhenotype`, not a positive relation. The predicate is an exclusion marker, not a formal OWL negative assertion. There is no canonical negative record here and no complete source-aware conflict policy; such a policy must precede broader use.
+25. **How are conflicts and negation treated?** A negated P record uses `hasExcludedPhenotype`, not a positive relation. The predicate is an exclusion marker, not a formal OWL negative assertion. There is no canonical negative record here. The conflict report preserves both source records and gives neither automatic priority; it does not resolve clinical disagreement.
 
-26. **What does deterministic reproduction mean?** Two workspaces starting without derived outputs, using different Python hash seeds, reproduce all 17 selected files byte-for-byte and pass the 23 tests. They share the same installed Python/dependencies and exact local raw inputs. A clone alone cannot reacquire the files from the incomplete acquisition manifest.
+26. **What does deterministic reproduction mean?** Two workspaces starting without derived outputs, using different Python hash seeds, reproduce all 20 selected files byte-for-byte and pass the 31 tests. They share the same installed Python/dependencies and exact local raw inputs. A clone alone cannot reacquire the files from the incomplete acquisition manifest.
 
 27. **Why is this semantic integration rather than file conversion?** It verifies cross-source identity claims, distinguishes annotation meanings, retains unresolved mappings, formalizes local entailments and keeps evidence lineage. The mapping/projection choices are the semantic work. Correct RDF serialization alone would not establish them.
 
-28. **What remains, and what was the author's contribution?** The supplied scope, source choices and evidence constraints directed the project. AI assistance also drafted implementation and OWL choices; author axiom review remains to be recorded. Before broader claims, review the class/concept design, export compatibility and conflict policy. Patient-level work would additionally require individual/observation modelling, time, uncertainty, access controls and a separately governed data process. None is implemented here.
-
-The audit's [ratings and recommendations](../reports/CREDIBILITY_AUDIT.md) are deliberately qualified. The strongest demonstration of design skill is explaining a real trade-off, accepting or changing it with reasons, and showing the resulting effect on data and entailments.
+28. **What remains outside scope?** Fresh-environment reproduction, verified acquisition history, a manual Protégé walkthrough and full-source ontology reasoning are not demonstrated. Patient-level work would additionally require individual/observation modelling, time, uncertainty and access controls. None is implemented here.

@@ -1,44 +1,46 @@
-# Integrating Type 2 diabetes knowledge with provenance
+# T2DM knowledge integration with provenance
 
-Biomedical resources can use different identifiers for related concepts and repeat the same underlying evidence. Combining their records without checking those distinctions can produce a graph that looks connected but makes stronger claims than its sources support.
+This repository implements a bounded transformation of Mondo, Human Phenotype Ontology (HPO) and Open Targets snapshots into a source-separated RDF knowledge graph. It preserves disease identifiers, source annotations, mapping claims and statement provenance. The data supports disease–phenotype integration; it does not support the three T2DM drug/target queries.
 
-This project tests a bounded integration around Type 2 diabetes mellitus (T2DM), the disease case selected in the research brief. It connects the supplied Mondo, Human Phenotype Ontology (HPO) and Open Targets snapshots, preserving source identities, mapping decisions and annotation evidence. It is a semantic engineering case study, not a comprehensive diabetes knowledge base.
+## Implementation and workflow
 
-## Findings
+Frozen files → source audit → named source graphs and provenance → SHACL validation → OWL RL inference → SPARQL results and deterministic exports.
 
-- **The disease–phenotype integration works.** Mondo `MONDO:0005148` maps explicitly to HPOA's `OMIM:125853`; Open Targets preserves the same Mondo IRI. The graph contains 17 named hierarchy classes, five HPO terms and ten source-asserted exact mappings. Three terms are phenotype annotations; inheritance and onset are represented separately. One NANDO xref remains unresolved.
-- **Cross-source agreement is not independent corroboration.** The Open Targets annotations reproduce HPO-derived evidence and contain duplicate evidence entries. These are retained for traceability, not counted as additional studies.
-- **The supplied files cannot answer the clinical drug/target questions.** Every mechanism-to-catalog identifier resolves, but the data lacks structured T2DM–target associations and drug indications. Those three competency questions remain unsupported.
+The ontology distinguishes phenotype, inheritance, onset and excluded-phenotype annotations. Positive/excluded pairs retain both provenance chains and are flagged for evidence review. Disease-level annotations do not imply universal manifestation in patients. SKOS mappings align source identifiers without asserting identity.
 
-Mondo and HPO ontology headers identify 2026-09-01; HPOA identifies 2026-09-02. Open Targets 26.06 is user-declared, not independently authenticated by the Parquet metadata. Original download URLs and dates are unavailable.
+`knowledge_graph.nq` retains graph context. `review.ttl` combines source facts and schema. `reasoning.ttl` preserves every asserted source triple while excluding 13 provenance-schema triples listed in an export manifest. Separate files contain asserted facts, inferred statements and provenance.
 
-## What the model demonstrates
+## Data scope
 
-RDF stores facts in named source graphs. RDFS retains the named disease hierarchy. SKOS expresses the source mapping claims; similar labels do not create identity links. Reified statements and PROV-O connect each imported assertion to its source record, frozen file and build activity.
+Eleven frozen files yield 17 named hierarchy classes, five HPO terms, three positive phenotype terms and ten explicit exact mappings. One NANDO xref remains unresolved. Mondo and HPO identify `2026-09-01`; HPOA identifies `2026-09-02`. Open Targets `26.06` is declared metadata, not independently authenticated. Original acquisition URLs and dates are unavailable.
 
-The local OWL definition classifies terminology concepts that have positive phenotype annotations. The reasoner also derives inverse phenotype relations and transitive ancestors. These are real but elementary inferences, not diagnostic or treatment discoveries. SHACL checks selected entity, relationship, mapping and provenance requirements; six deliberately invalid copies fail as expected. Generic annotation endpoints are now checked, and a separate evidence report flags exact-IRI positive/excluded pairs for human review.
+## Results
 
-The eleven SPARQL questions execute. The credibility audit interprets four as answered within scope, four as partially answered and three as unsupported. It explains the difference from the original pipeline's simpler status labels.
+- 160 unique asserted triples; 174 source quads; 179 assertion occurrences from 38 records.
+- 31/31 tests and 35/35 separate audit checks pass.
+- Two clean-output builds reproduce 20 artifacts byte-for-byte in the same installed environment.
+- Eleven competency queries execute; the evidence assessment identifies four answered within scope, four partially answered and three unsupported.
+- The installed OWL API 4.5.29 detects zero OWL 2 DL profile violations in `reasoning.ttl`. HermiT 1.4.3.456 derives the selected classification and inverse; removing positive premises removes those entailments.
 
-## Verification and reproduction
+## Limitations
 
-The 31 tests pass. A separate audit checks 38 source records and all 179 assertion occurrences, covering every one of the 174 source quads. Two workspaces starting without derived outputs reproduce 20 artifacts byte-for-byte. They use the same pinned Python environment and local frozen inputs; a Git clone alone cannot reacquire those files.
+The full review export retains three provenance-related OWL profile violations. The reasoning projection does not validate the complete upstream ontologies. Source agreement is not independent corroboration: Open Targets repeats HPO-derived evidence. Neither SHACL conformity nor an inferred graph connection establishes clinical truth. Raw acquisition, fresh-environment reproduction and a manual Protégé walkthrough have not been demonstrated.
 
-See [reproduction instructions](docs/REPRODUCING.md). With the required environment and raw files in place:
+## Reproduction
+
+Use Python 3.12 and the pinned [requirements](requirements.txt), with the exact local files listed in [the input manifest](config/input_manifest.json). A clone alone does not supply those files.
 
 ```sh
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python scripts/build.py
 .venv/bin/python -m pytest -q
 .venv/bin/python audit/verify.py
 .venv/bin/python audit/clean_builds.py
 ```
 
-## Review the work
+See [reproduction instructions](docs/REPRODUCING.md) for the offline OWL library check and platform limits.
 
-Start with the [credibility audit](reports/CREDIBILITY_AUDIT.md) for methods, join keys, results and qualifications. The [generated build report](reports/FINAL_REPORT.md) retains the original results; its local artifact links require a build. Inspect the [ontology](ontology/core/core.ttl), [shapes](ontology/shapes/shapes.ttl), [implementation](src/clinical_kg/) and [queries](queries/competency/) for technical detail.
+## Repository map
 
-The [design decisions](docs/DESIGN_DECISIONS.md), [supervisor questions](docs/SUPERVISOR_DEFENCE_GUIDE.md) and [Protégé guide](docs/PROTEGE_REVIEW_GUIDE.md) support an author-led review. The installed Protégé OWL API/HermiT libraries verify the repaired review export’s consistency, existential classification and inverse relation. The separate `reasoning.ttl` projection has zero profile violations in the installed checker; the full review retains three provenance-related violations. See the [projection review](reports/OWL_PROJECTION_REVIEW.md) for its explicit boundary and pending design decision. Full OWL DL compatibility, clinical completeness and independent environment reproduction are not established.
-
-## Development
-
-This is researcher-directed, AI-assisted work. The researcher supplied the scope, source choices and validation requirements. AI assistance supported coding, debugging and documentation, including drafting the implemented OWL vocabulary. Specific modelling choices are recorded for author review; that semantic sign-off is still pending.
+[Current model](docs/04_ontology_design_notes.md), [validation results](docs/validation_results.md), [documentation map](docs/README.md), [source code](src/clinical_kg/), [ontology](ontology/core/core.ttl), [SHACL shapes](ontology/shapes/shapes.ttl), [queries](queries/competency/) and [attribution](ATTRIBUTION.md).
