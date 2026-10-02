@@ -1,0 +1,6 @@
+PREFIX ex: <https://example.org/clinical-kg/extension/>
+SELECT ?link ?disease ?drug ?target WHERE {
+ GRAPH <https://example.org/clinical-kg/extension/graph/clinical-context> {
+  ?link a ex:ClinicalContextLink; ex:disease ?disease; ex:drug ?drug; ex:target ?target .
+ }
+} ORDER BY ?drug ?target

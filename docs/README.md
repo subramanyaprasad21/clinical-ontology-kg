@@ -2,6 +2,8 @@
 
 ## Current summaries
 
+- [Clinical extension](CLINICAL_EXTENSION.md): record model, clinical paths, provenance, tests and replay.
+
 - [Clinical extension capture](EXTENSION_CAPTURE.md): exact-T2DM rows, join checks and release comparison.
 
 - [Extension feasibility](EXTENSION_FEASIBILITY.md): candidate sources and unverified acquisition requirements.

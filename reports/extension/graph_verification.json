@@ -1,0 +1,9 @@
+{
+  "source_payloads_verified": 1846,
+  "indication_rows_verified": 613,
+  "clinical_paths_verified": 798,
+  "path_evidence_links_verified": 2401,
+  "all_checks_passed": true,
+  "scope": "Separate comparison implementation; shared RDFLib and PyArrow libraries.",
+  "verifier_sha256": "918acde76e88179f59ceae8eee3c669e014d3c754f8b53bf379f815ec6e90415"
+}

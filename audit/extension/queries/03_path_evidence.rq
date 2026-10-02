@@ -1,0 +1,10 @@
+PREFIX ex: <https://example.org/clinical-kg/extension/>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+SELECT ?link ?record ?recordType ?snapshot ?path ?row ?sha256 WHERE {
+ GRAPH <https://example.org/clinical-kg/extension/graph/clinical-context> { ?link prov:wasDerivedFrom ?record }
+ GRAPH <https://example.org/clinical-kg/extension/graph/records> { ?record a ?recordType }
+ GRAPH <https://example.org/clinical-kg/extension/graph/provenance> {
+  ?record prov:wasDerivedFrom ?snapshot; ex:rowIndex ?row .
+  ?snapshot ex:path ?path; ex:sha256 ?sha256 .
+ }
+} ORDER BY ?link ?record

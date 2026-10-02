@@ -1,0 +1,10 @@
+{
+  "procedure": "Two in-place offline builds; second run PYTHONHASHSEED=404; same environment and captured source files.",
+  "artifacts": {
+    "clinical_context.nq": "e03d396bf27118936bdf5c55b4375c1b5135c6ccfa171c8b8556246b299d185e",
+    "query_results.json": "22a97afe34fe8a08f4bea6ed282bb11021f609a5fc8cf390211aacf15d426f32"
+  },
+  "byte_identical": true,
+  "summary_identical": true,
+  "scope": "Not a clean-environment or cross-platform extension reproduction."
+}

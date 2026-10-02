@@ -1,0 +1,27 @@
+{
+  "artifacts": {
+    "clinical_context.nq": "e03d396bf27118936bdf5c55b4375c1b5135c6ccfa171c8b8556246b299d185e",
+    "query_results.json": "22a97afe34fe8a08f4bea6ed282bb11021f609a5fc8cf390211aacf15d426f32"
+  },
+  "core_modified": false,
+  "implementation_sha256": "512992e435f04fcbbf723ce57ffbbe8ed77f2f9e525aa027cfa730b2f606524a",
+  "named_graph_counts": {
+    "https://example.org/clinical-kg/extension/graph/clinical-context": 6391,
+    "https://example.org/clinical-kg/extension/graph/provenance": 9288,
+    "https://example.org/clinical-kg/extension/graph/records": 195599
+  },
+  "query_rows": {
+    "01_indications": 613,
+    "02_clinical_paths": 798,
+    "03_path_evidence": 2401
+  },
+  "rdf_round_trip_verified": true,
+  "release": "26.09",
+  "selected_records": {
+    "clinical_targets": 798,
+    "disease": 1,
+    "indications": 613,
+    "mechanisms": 434
+  },
+  "semantics": "Clinical indication/mechanism context only; no general disease-target association or efficacy claim."
+}

@@ -1,5 +1,7 @@
 # Open Targets 26.09 clinical capture
 
+This records the source-capture stage. The [clinical extension](CLINICAL_EXTENSION.md) describes the subsequent RDF export; counts and source limitations below are retained.
+
 Four complete table listings were captured from the official release archive: disease, clinical indication, clinical target and drug mechanism of action. Each listing contained one Parquet partition. All eight captured files (four listings and four partitions) match their recorded sizes and SHA-256 hashes. URLs, response headers and retrieval timestamps are in [the capture manifest](../reports/extension/capture_manifest.json).
 
 ## Observations

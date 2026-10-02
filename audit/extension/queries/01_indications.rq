@@ -1,0 +1,4 @@
+PREFIX ex: <https://example.org/clinical-kg/extension/>
+SELECT ?record ?drug ?stage WHERE {
+ GRAPH <https://example.org/clinical-kg/extension/graph/records> { ?record a ex:IndicationRecord; ex:drug ?drug . OPTIONAL { ?record ex:indicationStage ?stage } }
+} ORDER BY ?drug ?record

@@ -22,7 +22,7 @@ Eleven frozen files yield 17 named hierarchy classes, five HPO terms, three posi
 - Eleven competency queries execute; the evidence assessment identifies four answered within scope, four partially answered and three unsupported.
 - The installed OWL API 4.5.29 detects zero OWL 2 DL profile violations in `reasoning.ttl`. HermiT 1.4.3.456 derives the selected classification and inverse; removing positive premises removes those entailments.
 
-A separate [26.09 clinical capture](docs/EXTENSION_CAPTURE.md) contains 613 exact-T2DM indication records and 798 clinical drug–target pairs with matching indication/mechanism records. It is audited source data, not yet integrated into the core RDF or queries.
+A separate [26.09 clinical capture](docs/EXTENSION_CAPTURE.md) contains 613 exact-T2DM indication records and 798 clinical drug–target pairs with matching indication/mechanism records. The separate [clinical extension](docs/CLINICAL_EXTENSION.md) exports those records and joins as RDF with provenance and three queries. Its seven tests pass alongside the 31 core tests; it does not alter the core queries.
 
 ## Limitations
 
