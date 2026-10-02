@@ -1,0 +1,113 @@
+{
+  "release": "26.09",
+  "release_basis": "official release archive URL",
+  "scope": [
+    "disease",
+    "clinical_indication",
+    "clinical_target",
+    "drug_mechanism_of_action"
+  ],
+  "files": [
+    {
+      "url": "https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/26.09/output/disease/",
+      "path": "data/extensions/opentargets-26.09/disease-index.html",
+      "retrieved_at": "2026-10-02T06:17:36.297267+00:00",
+      "bytes": 1027,
+      "sha256": "16ed0e2d912c5790f778b01c2df5f90d5239d2b65bce9ae3d4e91ae90a6da926",
+      "headers": {
+        "ETag": null,
+        "Last-Modified": null,
+        "Content-Length": "1027"
+      }
+    },
+    {
+      "url": "https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/26.09/output/disease/00000000.parquet",
+      "path": "data/extensions/opentargets-26.09/disease/00000000.parquet",
+      "retrieved_at": "2026-10-02T06:17:43.206366+00:00",
+      "bytes": 6346458,
+      "sha256": "a89b8b8b89bad168016e6ff8302d2bcc8d9b7f9cbb35c459ef847c36a4f17aed",
+      "headers": {
+        "ETag": "\"60d6da-65ae66c869080\"",
+        "Last-Modified": "Mon, 07 Sep 2026 15:39:30 GMT",
+        "Content-Length": "6346458"
+      }
+    },
+    {
+      "url": "https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/26.09/output/clinical_indication/",
+      "path": "data/extensions/opentargets-26.09/clinical_indication-index.html",
+      "retrieved_at": "2026-10-02T06:17:43.695438+00:00",
+      "bytes": 1051,
+      "sha256": "921536867d051df1a835d26cae1dbef894063ca72764b02f33314614e9137f01",
+      "headers": {
+        "ETag": null,
+        "Last-Modified": null,
+        "Content-Length": "1051"
+      }
+    },
+    {
+      "url": "https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/26.09/output/clinical_indication/00000000.parquet",
+      "path": "data/extensions/opentargets-26.09/clinical_indication/00000000.parquet",
+      "retrieved_at": "2026-10-02T06:17:49.529207+00:00",
+      "bytes": 4989955,
+      "sha256": "e10ced7ce09495cd3fa6e7cb94e81e083aed78ee399424730d567243b49a38d8",
+      "headers": {
+        "ETag": "\"4c2403-65ae798eedc80\"",
+        "Last-Modified": "Mon, 07 Sep 2026 17:03:30 GMT",
+        "Content-Length": "4989955"
+      }
+    },
+    {
+      "url": "https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/26.09/output/clinical_target/",
+      "path": "data/extensions/opentargets-26.09/clinical_target-index.html",
+      "retrieved_at": "2026-10-02T06:17:50.024849+00:00",
+      "bytes": 1043,
+      "sha256": "dc3380ae4198b2a89ee5067454954e6660086b1f879ef299b6ceab6ef6a57a23",
+      "headers": {
+        "ETag": null,
+        "Last-Modified": null,
+        "Content-Length": "1043"
+      }
+    },
+    {
+      "url": "https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/26.09/output/clinical_target/00000000.parquet",
+      "path": "data/extensions/opentargets-26.09/clinical_target/00000000.parquet",
+      "retrieved_at": "2026-10-02T06:17:54.338040+00:00",
+      "bytes": 2815006,
+      "sha256": "33feae900b97a0935c3e30a5c745d3074a2ca46c5e50456b334482c0da113735",
+      "headers": {
+        "ETag": "\"2af41e-65ae798d05800\"",
+        "Last-Modified": "Mon, 07 Sep 2026 17:03:28 GMT",
+        "Content-Length": "2815006"
+      }
+    },
+    {
+      "url": "https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/26.09/output/drug_mechanism_of_action/",
+      "path": "data/extensions/opentargets-26.09/drug_mechanism_of_action-index.html",
+      "retrieved_at": "2026-10-02T06:17:54.799316+00:00",
+      "bytes": 1061,
+      "sha256": "ad464aec3e776a1de853684824466449e8b5fb76501f75b16634c37ec170e5f0",
+      "headers": {
+        "ETag": null,
+        "Last-Modified": null,
+        "Content-Length": "1061"
+      }
+    },
+    {
+      "url": "https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/26.09/output/drug_mechanism_of_action/00000000.parquet",
+      "path": "data/extensions/opentargets-26.09/drug_mechanism_of_action/00000000.parquet",
+      "retrieved_at": "2026-10-02T06:17:56.049081+00:00",
+      "bytes": 322830,
+      "sha256": "8484accd3383837e0eaac2164eed89991daf58dc93f0a599072fb7e5ef4f6c28",
+      "headers": {
+        "ETag": "\"4ed0e-65bb0d4deb200\"",
+        "Last-Modified": "Thu, 17 Sep 2026 17:08:24 GMT",
+        "Content-Length": "322830"
+      }
+    }
+  ],
+  "excludes": [
+    "association_overall_direct",
+    "association_overall_indirect",
+    "clinical_report"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "reference_project": "dementia-kg-ai",
+  "reference_manifest": "manifests/ot2606-context-001.capture.json",
+  "reference_manifest_sha256": "970a28d46d5e618de9ad424a678b8d5c19942da061167bfca70e72734bd7ceb0",
+  "reference_edition": "26.06",
+  "current_release": "26.09",
+  "matching_file_hashes": [],
+  "scope": "Manifest hash comparison; external raw files not independently rehashed. No files reused across releases."
+}

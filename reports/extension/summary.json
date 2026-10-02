@@ -1,0 +1,44 @@
+{
+  "release": "26.09",
+  "anchor": "MONDO_0005148",
+  "anchor_name": "type 2 diabetes mellitus",
+  "capture_manifest_sha256": "3cfe7d19618a2744cf951a9f9548901d7ae381010bcefc64bcc652626989e8db",
+  "source_rows": {
+    "disease": 45896,
+    "clinical_indication": 86451,
+    "clinical_target": 13261,
+    "drug_mechanism_of_action": 6092
+  },
+  "indication_rows": 613,
+  "indication_drugs": 613,
+  "indication_stages": {
+    "APPROVAL": 70,
+    "EARLY_PHASE_1": 13,
+    "IND": 1,
+    "PHASE_1": 62,
+    "PHASE_1_2": 14,
+    "PHASE_2": 190,
+    "PHASE_2_3": 25,
+    "PHASE_3": 150,
+    "PREAPPROVAL": 1,
+    "PRECLINICAL": 3,
+    "UNKNOWN": 84
+  },
+  "clinical_target_rows": 798,
+  "clinical_target_unique_pairs": 798,
+  "clinical_target_drugs": 372,
+  "clinical_targets": 333,
+  "clinical_target_pairs_with_exact_indication": 798,
+  "mechanism_rows_for_indication_drugs": 434,
+  "clinical_target_pairs_matching_indication_and_mechanism": 798,
+  "clinical_target_pairs_without_matching_indication_and_mechanism": 0,
+  "all_captured_hashes_verified": true,
+  "all_listed_partitions_present": true,
+  "limitations": [
+    "No general target association tables captured",
+    "Clinical report IDs retained but their report bodies not captured",
+    "Clinical-target maxClinicalStage is aggregate over its disease context; not treated as T2DM-specific approval",
+    "No drug or target catalog labels joined from another release",
+    "No RDF extension integrated"
+  ]
+}

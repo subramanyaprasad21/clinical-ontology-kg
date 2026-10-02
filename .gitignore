@@ -34,3 +34,6 @@ reports/credibility_audit/shacl_checks.json
 
 # Fresh-environment execution logs contain temporary host paths.
 reports/fresh_environment/*.log
+
+# Extension captures are separate from the frozen core.
+data/extensions/

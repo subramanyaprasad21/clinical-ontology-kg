@@ -1,5 +1,7 @@
 # Drug/target extension: preliminary feasibility
 
+The documentation-only assessment below is superseded for row coverage by the [captured-data assessment](EXTENSION_CAPTURE.md). The core graph remains unchanged.
+
 Documentation checked on 2026-10-02. No extension records have been imported, and the frozen input manifest is unchanged. The three drug/target competency questions remain unsupported by the current graph.
 
 ## Candidate source

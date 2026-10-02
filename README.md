@@ -22,6 +22,8 @@ Eleven frozen files yield 17 named hierarchy classes, five HPO terms, three posi
 - Eleven competency queries execute; the evidence assessment identifies four answered within scope, four partially answered and three unsupported.
 - The installed OWL API 4.5.29 detects zero OWL 2 DL profile violations in `reasoning.ttl`. HermiT 1.4.3.456 derives the selected classification and inverse; removing positive premises removes those entailments.
 
+A separate [26.09 clinical capture](docs/EXTENSION_CAPTURE.md) contains 613 exact-T2DM indication records and 798 clinical drug–target pairs with matching indication/mechanism records. It is audited source data, not yet integrated into the core RDF or queries.
+
 ## Limitations
 
 The full review export retains three provenance-related OWL profile violations. The reasoning projection does not validate the complete upstream ontologies. Source agreement is not independent corroboration: Open Targets repeats HPO-derived evidence. Neither SHACL conformity nor an inferred graph connection establishes clinical truth. Raw acquisition and cross-platform reproduction have not been demonstrated. Selected [Protégé GUI checks](docs/PROTEGE_OBSERVATIONS.md) confirm the classification and inverse relations; they do not constitute an exhaustive axiom review.

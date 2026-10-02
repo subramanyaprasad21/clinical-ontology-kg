@@ -2,6 +2,8 @@
 
 ## Current summaries
 
+- [Clinical extension capture](EXTENSION_CAPTURE.md): exact-T2DM rows, join checks and release comparison.
+
 - [Extension feasibility](EXTENSION_FEASIBILITY.md): candidate sources and unverified acquisition requirements.
 
 - [Protégé observations](PROTEGE_OBSERVATIONS.md): recorded classification and inverse-relation views.
