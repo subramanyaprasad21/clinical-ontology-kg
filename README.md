@@ -61,4 +61,4 @@ The full same-host verification procedure is in [docs/REPRODUCING.md](docs/REPRO
 - `reports/final/`: final verification summaries and protected-file baseline
 - `docs/`: model, provenance, evaluation, limitations and reproduction notes
 
-The [documentation map](docs/README.md) separates current documentation from hash-bound historical records.
+The [documentation map](docs/README.md) separates current documentation from hash-bound historical records. Machine-readable evidence that is directly viewable in Git is concentrated under [`reports/final/`](reports/final/). Some historical core reports link to `data/processed/` and `reports/tables/`; those are reproducible build outputs intentionally excluded from Git rather than missing committed evidence.
