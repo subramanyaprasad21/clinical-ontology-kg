@@ -1,43 +1,33 @@
-# Documentation map
+# Documentation
 
-## Current summaries
+The README gives the shortest view of the project. The files below contain the details behind it.
 
-- [Clinical extension](CLINICAL_EXTENSION.md): record model, clinical paths, provenance, tests and replay.
+## Current notes
 
-- [Clinical extension capture](EXTENSION_CAPTURE.md): exact-T2DM rows, join checks and release comparison.
+- [Clinical extension](CLINICAL_EXTENSION.md) describes the Open Targets 26.09 record model, join rule, report resolution and final counts.
+- [Evaluation](EVALUATION.md) records the executed checks and the boundary of each result.
+- [Validation](validation_results.md) summarizes core and extension validation.
+- [Reproduction](REPRODUCING.md) lists the build and verification commands.
+- [Ontology design](04_ontology_design_notes.md) explains the local annotation model and reasoning boundary.
+- [Mapping policy](02_mapping_policy.md) records how external identifiers are handled.
+- [Provenance model](provenance_model.md) describes statement, record and snapshot provenance.
+- [Limitations](limitations.md) collects the remaining data, modelling and reproduction limits.
+- [Protégé observations](PROTEGE_OBSERVATIONS.md) records the GUI checks already performed.
 
-- [Extension feasibility](EXTENSION_FEASIBILITY.md): candidate sources and unverified acquisition requirements.
+## Machine-readable results
 
-- [Protégé observations](PROTEGE_OBSERVATIONS.md): recorded classification and inverse-relation views.
+Final extension counts are in [reports/final/extension_summary.json](../reports/final/extension_summary.json). Report resolution is in [reports/extension/clinical_report_audit.json](../reports/extension/clinical_report_audit.json). The independent extension comparison is in [reports/final/extension_verification.json](../reports/final/extension_verification.json), and the complete same-host verification is in [reports/final/project_verification.json](../reports/final/project_verification.json).
 
-- [Evaluation and design assessment](EVALUATION.md): executed evidence, design rationale and remaining verification limits.
-
-- [Repository overview](../README.md): implemented scope, measured results and limitations.
-- [Semantic model](04_ontology_design_notes.md): annotation meaning, reasoning and export boundaries.
-- [Validation results](validation_results.md): current checks and their limits.
-- [Reproduction](REPRODUCING.md): inputs, environment and executable commands.
-- [Mapping policy](02_mapping_policy.md), [provenance model](provenance_model.md), [competency questions](03_competency_questions.md), [limitations](limitations.md).
-- [Protégé inspection guide](PROTEGE_REVIEW_GUIDE.md) and [technical questions](SUPERVISOR_DEFENCE_GUIDE.md).
-
-## Technical implementation and results
-
-[Build report](../reports/FINAL_REPORT.md), [metrics](../reports/metrics.json), [audit checks](../reports/credibility_audit/verification.json), [clean-build hashes](../reports/credibility_audit/clean_builds.json) and [OWL checks](../reports/owl_compatibility.json) are generated evidence. The build report describes its recorded run; current reproduction scope is summarized above. Generated source payloads and RDF exports require a local build.
+The core build report, metrics, OWL checks and audit outputs under `reports/` are generated evidence. Large RDF exports and raw source payloads are local build products and are not stored in Git.
 
 ## Historical records
 
-These records retain their original bytes and may describe earlier counts, limitations or development review state. They are not current status summaries.
+Some files are retained exactly because later verification hashes them. They may describe an earlier stage of the project and should not be read as the current status.
 
-- [Design record](DESIGN_DECISIONS.md): recorded modelling rationale and review state through 2026-10-01.
-- [Baseline credibility audit](../reports/CREDIBILITY_AUDIT.md): before the export and validation repairs.
-- [Export repair record](../reports/EXPORT_VALIDATION_FOLLOWUP.md): 29-test repair stage.
-- [Reasoning projection record](../reports/OWL_PROJECTION_REVIEW.md): 2026-10-01 export stage.
-- [Initial scope](00_project_charter.md) and [source feasibility](01_data_feasibility_matrix.md): original bounded input study.
-- [Earlier in-place repeatability](../reports/reproducibility.json) and `reports/credibility_audit/pre_export_fix/`: prior execution evidence.
+This includes the design record, original extension capture, baseline credibility audit, export follow-up, reasoning projection review and earlier reproducibility outputs. The protected-file list is [reports/final/protected_files.json](../reports/final/protected_files.json).
 
-## Frozen source identity
+The current README, evaluation, validation and reproduction notes take precedence when a historical document describes an earlier count or limitation.
 
-[Input manifest](../config/input_manifest.json) records the eleven raw file hashes and version basis. Raw files remain local and are checked before and after builds. Do not regenerate this manifest to accommodate replacement data. Source identity is distinct from publisher authenticity and clinical validity.
+## Source identity
 
-## Conventions
-
-[Writing conventions](WRITING_CONVENTIONS.md) govern current documentation and preservation of historical material. [Attribution](../ATTRIBUTION.md) is maintained separately from technical results.
+The [core input manifest](../config/input_manifest.json) records the eleven frozen source-file hashes and version basis. Those hashes identify the local snapshots. They do not reconstruct missing historical download receipts or independently authenticate the declared Open Targets 26.06 release.

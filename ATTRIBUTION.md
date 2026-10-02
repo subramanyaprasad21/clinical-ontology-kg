@@ -1,7 +1,5 @@
-# Attribution
+# Development note
 
-The project scope, source selection and evidence constraints were supplied by the researcher. AI assistance supported implementation, debugging, tests and documentation, and also drafted parts of the local OWL vocabulary and modelling choices. The work is not represented as unaided ontology design.
+Project scope, source selection, evidence boundaries and final interpretation were set for this repository. Coding assistants were used during implementation, debugging, testing and documentation, including parts of the OWL vocabulary and the clinical extension.
 
-The disease-level annotation interpretation and evidence-preservation policy were subsequently reviewed and accepted. A guided manual Protégé inspection subsequently verified the selected classification and inverse views. This does not establish review of every axiom or independent authorship.
-
-AI assistance also implemented the separate clinical record model, provenance joins, queries and verification code. This extension is not represented as independently authored ontology design.
+Claims in the repository are tied to recorded source data, executable checks and preserved artifacts. Development tooling does not change the source or verification boundaries described in the technical documentation.

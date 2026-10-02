@@ -1,0 +1,31 @@
+{
+  "release": "26.09",
+  "table": "clinical_report",
+  "files": [
+    {
+      "url": "https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/26.09/output/clinical_report/",
+      "path": "data/extensions/opentargets-26.09/clinical-report-capture/index.html",
+      "bytes": 1043,
+      "sha256": "088f3f44a87fe3cbf8e258d52994a481805140cd3197a13741d264d49299bfb6",
+      "headers": {
+        "ETag": null,
+        "Last-Modified": null,
+        "Content-Length": "1043"
+      },
+      "retrieved_at": "2026-10-02T11:23:32.956334+00:00"
+    },
+    {
+      "url": "https://ftp.ebi.ac.uk/pub/databases/opentargets/platform/26.09/output/clinical_report/00000000.parquet",
+      "path": "data/extensions/opentargets-26.09/clinical-report-capture/00000000.parquet",
+      "bytes": 75924085,
+      "sha256": "ba0ea48b129182de119f5d676bb1483e6225ba65857a31b7319b65c0e6b8fa25",
+      "headers": {
+        "ETag": "\"4868275-65ae78bffb440\"",
+        "Last-Modified": "Mon, 07 Sep 2026 16:59:53 GMT",
+        "Content-Length": "75924085"
+      },
+      "retrieved_at": "2026-10-02T11:24:58.916785+00:00"
+    }
+  ],
+  "release_basis": "official release archive URL"
+}

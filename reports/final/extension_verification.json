@@ -1,0 +1,27 @@
+{
+  "all_checks_passed": true,
+  "clinical_paths": 798,
+  "path_evidence_links": 2401,
+  "references_with_qc_flags": {
+    "ClinicalTargetRecord": 39075,
+    "IndicationRecord": 847
+  },
+  "report_reference_context": {
+    "ClinicalTargetRecord:drug=True,disease=False": 137473,
+    "ClinicalTargetRecord:drug=True,disease=True": 43002,
+    "IndicationRecord:drug=True,disease=True": 6201
+  },
+  "resolved_by_record_type": {
+    "ClinicalTargetRecord": 180475,
+    "DiseaseRecord": 0,
+    "IndicationRecord": 6201,
+    "MechanismRecord": 0
+  },
+  "resolved_reference_edges": 186676,
+  "scope": "Independent raw-record comparison; shared RDFLib and PyArrow libraries. No clinical truth or regulatory verification.",
+  "serialized_quads": 1077529,
+  "unresolved_reference_edges": 0,
+  "verified_raw_payloads": 38886,
+  "verified_report_records": 37040,
+  "verifier_sha256": "4d2783f823fe4594f9492d28e1e4adeedaa998333ddcdcf332dcf1d38328a570"
+}

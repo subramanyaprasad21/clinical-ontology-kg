@@ -1,55 +1,68 @@
-# Clinical indication and mechanism extension
+# Open Targets 26.09 clinical extension
 
-The Open Targets 26.09 capture now has a separate RDF export and three executable queries. The original frozen core and its eleven competency-query results are unchanged. General target-association evidence remains outside this extension.
+The clinical extension is a separate dataset built beside the frozen core. It uses five Open Targets 26.09 tables: `disease`, `clinical_indication`, `clinical_target`, `drug_mechanism_of_action` and `clinical_report`.
 
-## Representation
+The capture receipts record the archive URLs, retrieval times, file sizes and SHA-256 values. The historical core remains declared Open Targets 26.06 and is not rewritten by the extension.
 
-The namespace is `https://example.org/clinical-kg/extension/`. Its classes describe source records and derived joins, not patients or clinical guarantees.
+## Join rule
 
-| Resource | Meaning |
-|---|---|
-| `DiseaseRecord` | Exact disease record for `MONDO_0005148` |
-| `IndicationRecord` | Source drug–disease record; `indicationStage` preserves its `maxClinicalStage` value |
-| `ClinicalTargetRecord` | Source drug–target record whose disease contexts include T2DM; `aggregateStage` remains scoped to this multi-disease record |
-| `MechanismRecord` | Mechanism description, action type, drug identifiers and target identifiers |
-| `ClinicalContextLink` | A T2DM/drug/target tuple supported by an exact indication, a clinical-target record and a matching mechanism |
+A clinical path is created only when the same disease/drug/target context is supported by:
 
-Three named graphs separate records, provenance and derived clinical context. Every selected record has a snapshot hash, zero-based file row, original JSON payload and build activity. Every derived path links to all supporting indication, mechanism and clinical-target records. Report identifiers are preserved as source references; their bodies have not been retrieved. References on a multi-disease record are not independently attributed to T2DM.
+1. an exact T2DM indication for the drug;
+2. a mechanism record containing that drug and target;
+3. a clinical-target record containing the same drug, target and exact T2DM identifier.
 
-Missing indication stages stay absent. Aggregate clinical-target approval cannot substitute for an indication-specific stage. The builder rejects a clinical-target path lacking either an exact-T2DM indication or a matching mechanism. It does not copy labels from another release or assert treatment efficacy, regulatory endorsement, causality, or general disease–target association.
+Each path keeps links to the source records that support it. Missing support stops the build for that path. No general disease-target association predicate is introduced.
 
-## Results
+Stages remain on the records where Open Targets supplied them. A drug stage, report stage or multi-disease clinical-target stage is not promoted to a T2DM approval claim. Seventy indication records contain the source value `APPROVAL`; the project does not independently adjudicate those values.
 
-| Measure | Result |
+## Records and provenance
+
+The extension uses four named graphs for source records, reports, provenance and clinical context. Every imported record keeps its row locator, source snapshot hash, release, archive URL, provider and build activity. Full row payloads are retained as RDF JSON.
+
+Report references resolve by exact report ID. Missing or ambiguous IDs remain unresolved. Resolution proves that the referenced source record was found; it does not prove clinical relevance or efficacy.
+
+| Reference set | Resolved | Unresolved |
+|---|---:|---:|
+| T2DM indication records | 6,201 | 0 |
+| Clinical-target records | 180,475 | 0 |
+| Total references | 186,676 | 0 |
+| Unique report IDs | 37,040 | 0 |
+
+All 289,954 rows in the captured report table were scanned and report IDs were unique.
+
+Of the 180,475 clinical-target references, 43,002 contain both the drug and T2DM identifiers. The other 137,473 contain the drug but not T2DM. Those references remain provenance for a multi-disease source record and are not counted as T2DM-specific report evidence.
+
+QC flags occur on 847 indication references and 39,075 clinical-target references. Among the 37,040 imported reports, 8,353 have QC flags and 28,687 have a null QC field. `phaseFromSource` is missing on 6,797 reports. These states are preserved in the graph.
+
+## Final counts
+
+| Measure | Count |
 |---|---:|
-| Selected source records | 1,846 |
-| Indication query rows | 613 |
-| Clinical-path query rows | 798 |
-| Path-to-source-record query rows | 2,401 |
-| Source-record graph triples | 195,599 |
-| Provenance graph triples | 9,288 |
+| T2DM indication records / unique indication drugs | 613 / 613 |
+| Drug-target mechanism records | 434 |
+| Clinical-target records / supported paths | 798 / 798 |
+| Unique targets / drugs participating in paths | 333 / 372 |
+| Disease records | 1 |
+| Imported report records | 37,040 |
+| All imported source records | 38,886 |
+| Path-to-source support links | 2,401 |
+| Record graph triples | 382,275 |
+| Report graph triples | 494,349 |
+| Provenance graph triples | 194,514 |
 | Clinical-context graph triples | 6,391 |
+| Unique triples / quads | 1,077,529 / 1,077,529 |
+| Distinct subject resources | 39,696 |
+| Distinct IRIs in triple positions | 40,697 |
 
-Source-record triple count includes report identifier references; it is not a count of independent studies. The indication table includes investigational and unknown stages. Seventy source indication rows carry `APPROVAL`; this is preserved source metadata, not an independent regulatory assessment.
+Repeated references are not treated as independent studies.
 
-The [separate verifier](../audit/extension/verify_graph.py) rereads captured Parquet and checks every selected payload, all indication/stage results, path pairs, supporting record types and provenance-query coverage. It shares RDFLib and PyArrow with the builder. The [verification report](../reports/extension/graph_verification.json) records the executed counts. The RDF dataset round trip preserves all quads. Two in-place builds, with the second using `PYTHONHASHSEED=404`, produce identical graph/query bytes and summaries; see [repeatability evidence](../reports/extension/repeatability.json). This does not establish fresh-environment reproduction of the extension.
+## Queries and verification
 
-The combined test run passes 38 tests: 31 core tests and seven extension tests. Extension cases cover missing support, exact disease filtering, null disease contexts, stage isolation, identifier rejection, deterministic identifiers and input preservation. These are software checks, not clinical validation. No extension OWL reasoning or SHACL conformity result is claimed.
+The frozen competency queries 04, 05 and 06 still return zero rows against the extension because they use the core vocabulary. The record-aware extension queries return 333 targets, 613 indications and 798 supported paths.
 
-## Offline replay
+Question 05 is answered within the source-indication scope. Questions 04 and 06 have a narrower clinical-context answer; the general disease-target association question remains unsupported.
 
-With the captured files available:
+The independent verifier checks all 38,886 imported payloads against raw rows, all report links, stages, QC fields, 798 joins and 2,401 support links. It also reparses the serialized dataset and checks the graph counts. The extension SHACL report conforms, but no extension OWL entailment result or clinical-validity claim is made.
 
-```sh
-.venv/bin/python audit/extension/build.py
-.venv/bin/python audit/extension/verify_graph.py
-.venv/bin/python -m pytest -q tests audit/extension/test_build.py
-```
-
-The committed capture manifest is the file-identity authority. The builder checks all capture hashes and partition listings before and after processing; it does not trust the previously selected-record JSON. Generated outputs are `data/extensions/opentargets-26.09/derived/clinical_context.nq` and `query_results.json`. [Graph summary](../reports/extension/graph_summary.json) records their hashes and the implementation fingerprint. Raw files and large generated outputs remain local.
-
-Queries are in [audit/extension/queries](../audit/extension/queries/): indications, clinical paths and path evidence. They answer clinical-context questions in the extension; they do not silently change the meaning or status of the original core queries.
-
-## Remaining scope
-
-Clinical report bodies, complete general target-association evidence and same-release drug/target catalog enrichment are not captured. The existing clinical paths require no invented labels or inferred approval. Extending beyond them requires an additional source capture and evidence-specific interpretation.
+The final same-host verification passes all 46 tests and reproduces the final extension graph, query results, SHACL report and summary byte-for-byte under hash seed `707`. See [REPRODUCING.md](REPRODUCING.md) for the commands.

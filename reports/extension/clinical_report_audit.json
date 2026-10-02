@@ -1,0 +1,79 @@
+{
+  "ambiguous_ids": [],
+  "artifacts": {
+    "reference_checks.json": "3d4188dd5d16cbc94573238cc9411d953fe11f31c6f004e0772f83a94050c0b1",
+    "referenced_reports.json": "191e87a4203142909f8f78b052a894302679c48a6a6f31ab904b43dbeb7bea1b",
+    "schemas.json": "487e8a527b3347c43d72c9d42fc3511b6987bd20f2cad2d24516b331d78e8fc9"
+  },
+  "audit_sha256": "b1a2d039ecc6451d8d0f785e0f3712d1f3c1c5884a28a9d72c45d7c121415a71",
+  "duplicate_source_ids": 0,
+  "indication_report_providers": {
+    "AACT": 3532,
+    "ChEMBL": 487,
+    "EMA": 87,
+    "PMDA": 33,
+    "TTD": 171
+  },
+  "indication_report_sources": {
+    "ClinicalTrials.gov": 3532,
+    "DailyMed": 468,
+    "EMA Human Drugs": 87,
+    "FDA": 12,
+    "PMDA": 33,
+    "TTD": 171,
+    "USAN": 7
+  },
+  "indication_report_stages": {
+    "APPROVAL": 606,
+    "EARLY_PHASE_1": 34,
+    "IND": 4,
+    "PHASE_1": 388,
+    "PHASE_1_2": 62,
+    "PHASE_2": 641,
+    "PHASE_2_3": 81,
+    "PHASE_3": 1231,
+    "PHASE_4": 552,
+    "PREAPPROVAL": 3,
+    "PRECLINICAL": 3,
+    "UNKNOWN": 686,
+    "WITHDRAWAL": 19
+  },
+  "indication_reports_missing_url": 0,
+  "interpretation": "Identifier co-presence within a report is not an independently verified pairwise indication, clinical efficacy or regulatory determination.",
+  "non_indication_type_reference_counts": {
+    "clinical_target": {
+      "SAFETY": 1284
+    }
+  },
+  "quality_flags_per_reference": {
+    "clinical_indication": {
+      "UNVALIDATED_INDICATION": 847
+    },
+    "clinical_target": {
+      "NO_DISEASE": 2256,
+      "SAFETY_REPORT": 1284,
+      "UNVALIDATED_INDICATION": 36819
+    }
+  },
+  "reference_context_counts": {
+    "clinical_indication": {
+      "exact_drug_and_disease_present": 6201
+    },
+    "clinical_target": {
+      "disease_not_present": 137473,
+      "exact_drug_and_disease_present": 43002
+    }
+  },
+  "referenced_unique_ids": 37040,
+  "references_with_quality_flags": {
+    "clinical_indication": 847,
+    "clinical_target": 39075
+  },
+  "release": "26.09",
+  "report_manifest_sha256": "18cf6a6f148080089c6384ef971eb9d623c97d5c6439a4340426dfb2dedf07cf",
+  "resolved_unique_ids": 37040,
+  "source_report_rows": 289954,
+  "unique_indication_reports": 4310,
+  "unique_source_ids": 289954,
+  "unresolved_ids": []
+}

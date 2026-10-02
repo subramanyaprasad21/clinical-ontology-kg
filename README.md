@@ -1,48 +1,64 @@
-# T2DM knowledge integration with provenance
+# T2DM knowledge graph with provenance
 
-This repository implements a bounded transformation of Mondo, Human Phenotype Ontology (HPO) and Open Targets snapshots into a source-separated RDF knowledge graph. It preserves disease identifiers, source annotations, mapping claims and statement provenance. The data supports disease–phenotype integration; it does not support the three T2DM drug/target queries.
+A bounded RDF/OWL integration of Mondo, the Human Phenotype Ontology (HPO) and Open Targets around type 2 diabetes mellitus (T2DM).
 
-## Implementation and workflow
+The repository has two parts. The frozen core keeps the original hierarchy, phenotype annotations, mappings, provenance, SHACL checks, OWL reasoning and competency queries. A separate Open Targets 26.09 extension adds indication, drug-target mechanism, clinical-target and report records without rewriting the core.
 
-Frozen files → source audit → named source graphs and provenance → SHACL validation → OWL RL inference → SPARQL results and deterministic exports.
+## Scope
 
-The ontology distinguishes phenotype, inheritance, onset and excluded-phenotype annotations. Positive/excluded pairs retain both provenance chains and are flagged for evidence review. Disease-level annotations do not imply universal manifestation in patients. SKOS mappings align source identifiers without asserting identity.
+The graph records disease-level source annotations. It does not treat an HPO annotation as something every patient with T2DM must have. Positive and excluded annotations keep separate evidence. SKOS mappings preserve source mapping claims and are not identity assertions.
 
-`knowledge_graph.nq` retains graph context. `review.ttl` combines source facts and schema. `reasoning.ttl` preserves every asserted source triple while excluding 13 provenance-schema triples listed in an export manifest. Separate files contain asserted facts, inferred statements and provenance.
-
-## Data scope
-
-Eleven frozen files yield 17 named hierarchy classes, five HPO terms, three positive phenotype terms and ten explicit exact mappings. One NANDO xref remains unresolved. Mondo and HPO identify `2026-09-01`; HPOA identifies `2026-09-02`. Open Targets `26.06` is declared metadata, not independently authenticated. Original acquisition URLs and dates are unavailable.
+The core uses eleven frozen files: Mondo/HPO `2026-09-01`, HPOA `2026-09-02`, and declared Open Targets `26.06`. The historical acquisition URLs and dates for the core are unavailable. The 26.09 extension has separate capture receipts with archive URLs, retrieval times, sizes and hashes.
 
 ## Results
 
-- 160 unique asserted triples; 174 source quads; 179 assertion occurrences from 38 records.
-- 31/31 tests and 35/35 separate audit checks pass.
-- Two clean-output builds reproduce 20 artifacts byte-for-byte. A new virtual environment with freshly installed pinned packages also reproduces all 20 artifacts and passes the tests and separate audit on the same host.
-- Eleven competency queries execute; the evidence assessment identifies four answered within scope, four partially answered and three unsupported.
-- The installed OWL API 4.5.29 detects zero OWL 2 DL profile violations in `reasoning.ttl`. HermiT 1.4.3.456 derives the selected classification and inverse; removing positive premises removes those entailments.
+| Measure | Frozen core | Open Targets 26.09 extension |
+|---|---|---|
+| Source content | 38 records; 160 unique asserted triples; 174 source quads | 613 indications, 434 mechanisms, 798 clinical-target records, 1 disease record, 37,040 reports |
+| Clinical joins | Drug/target questions 04-06 unsupported in the frozen core | 798 supported paths; 372 participating drugs; 333 targets; 613 indication drugs |
+| Report resolution | Original provenance retained | 186,676 references resolved; 0 unresolved |
+| Graph size | Original outputs unchanged | 1,077,529 triples/quads; 39,696 subject resources |
+| Validation | 35 separate audit checks; SHACL conforms | All 38,886 imported payloads checked against raw rows; SHACL conforms |
 
-A separate [26.09 clinical capture](docs/EXTENSION_CAPTURE.md) contains 613 exact-T2DM indication records and 798 clinical drug–target pairs with matching indication/mechanism records. The separate [clinical extension](docs/CLINICAL_EXTENSION.md) exports those records and joins as RDF with provenance and three queries. Its seven tests pass alongside the 31 core tests; it does not alter the core queries.
+The regression suite has 46 passing tests: 31 core tests and 15 extension tests. Two clean core builds reproduce 20 artifacts byte-for-byte. The final verification also reproduces those 20 core artifacts and the three final extension artifacts in a fresh virtual environment on the same host.
 
-## Limitations
+The OWL reasoning projection has zero OWL 2 DL profile violations under OWL API 4.5.29. HermiT 1.4.3.456 verifies selected classification and inverse entailments, including premise-removal controls. The full review export retains three documented provenance-related profile violations.
 
-The full review export retains three provenance-related OWL profile violations. The reasoning projection does not validate the complete upstream ontologies. Source agreement is not independent corroboration: Open Targets repeats HPO-derived evidence. Neither SHACL conformity nor an inferred graph connection establishes clinical truth. Raw acquisition and cross-platform reproduction have not been demonstrated. Selected [Protégé GUI checks](docs/PROTEGE_OBSERVATIONS.md) confirm the classification and inverse relations; they do not constitute an exhaustive axiom review.
+## Clinical extension
 
-## Reproduction
+A supported clinical path needs all three source records for the same disease/drug/target context:
 
-Use Python 3.12 and the pinned [requirements](requirements.txt), with the exact local files listed in [the input manifest](config/input_manifest.json). A clone alone does not supply those files.
+1. an exact T2DM indication for the drug;
+2. a drug-target mechanism containing that drug and target;
+3. a clinical-target record containing the same drug, target and T2DM identifier.
+
+This rule produces 798 paths. It does not create a general disease-target association and does not establish efficacy or regulatory approval.
+
+Of the 186,676 resolved report references, 137,473 references from multi-disease clinical-target records do not contain T2DM. They stay attached as provenance for the source record rather than being treated as T2DM-specific evidence. QC flags and missing stage fields are preserved rather than filtered away.
+
+See [the extension notes](docs/CLINICAL_EXTENSION.md) and [evaluation](docs/EVALUATION.md) for the full scope.
+
+## Reproduce
+
+Python 3.12 and the pinned [requirements](requirements.txt) are used. The raw datasets are not stored in Git, so a clone also needs the exact files listed in the [core manifest](config/input_manifest.json) and the extension capture receipts.
 
 ```sh
 python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
-.venv/bin/python scripts/build.py
-.venv/bin/python -m pytest -q
-.venv/bin/python audit/verify.py
-.venv/bin/python audit/clean_builds.py
+.venv/bin/python audit/extension/final_build.py
+.venv/bin/python audit/extension/verify_final.py
+.venv/bin/python -m pytest -q tests audit/extension/test_build.py audit/extension/test_reports.py
 ```
 
-See [reproduction instructions](docs/REPRODUCING.md) for the offline OWL library check and platform limits.
+The full same-host verification procedure is in [docs/REPRODUCING.md](docs/REPRODUCING.md).
 
-## Repository map
+## Repository layout
 
-[Evaluation](docs/EVALUATION.md), [current model](docs/04_ontology_design_notes.md), [validation results](docs/validation_results.md), [documentation map](docs/README.md), [source code](src/clinical_kg/), [ontology](ontology/core/core.ttl), [SHACL shapes](ontology/shapes/shapes.ttl), [queries](queries/competency/) and [attribution](ATTRIBUTION.md).
+- `src/clinical_kg/`: core build, validation, reasoning and reporting code
+- `ontology/`: local OWL vocabulary and SHACL shapes
+- `queries/competency/`: frozen competency queries
+- `audit/extension/`: 26.09 extension build and verification code
+- `reports/final/`: final verification summaries and protected-file baseline
+- `docs/`: model, provenance, evaluation, limitations and reproduction notes
+
+The [documentation map](docs/README.md) separates current documentation from hash-bound historical records.

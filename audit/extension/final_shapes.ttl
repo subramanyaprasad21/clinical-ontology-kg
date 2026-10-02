@@ -1,0 +1,40 @@
+@prefix ex: <https://example.org/clinical-kg/extension/> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+ex:RecordShape a sh:NodeShape; sh:targetSubjectsOf ex:payload;
+ sh:property [ sh:path ex:payload; sh:minCount 1; sh:maxCount 1; sh:datatype rdf:JSON ];
+ sh:property [ sh:path ex:rowIndex; sh:minCount 1; sh:maxCount 1; sh:datatype xsd:integer; sh:minInclusive 0 ];
+ sh:property [ sh:path prov:wasDerivedFrom; sh:minCount 1; sh:maxCount 1; sh:nodeKind sh:IRI ];
+ sh:property [ sh:path prov:wasGeneratedBy; sh:minCount 1; sh:maxCount 1; sh:class prov:Activity ] .
+ex:SnapshotShape a sh:NodeShape; sh:targetSubjectsOf ex:sha256;
+ sh:property [ sh:path ex:sha256; sh:minCount 1; sh:maxCount 1; sh:pattern "^[0-9a-f]{64}$" ];
+ sh:property [ sh:path ex:path; sh:minCount 1; sh:maxCount 1 ];
+ sh:property [ sh:path ex:release; sh:hasValue "26.09" ];
+ sh:property [ sh:path prov:atLocation; sh:minCount 1; sh:maxCount 1; sh:nodeKind sh:IRI ] .
+ex:IndicationShape a sh:NodeShape; sh:targetClass ex:IndicationRecord;
+ sh:property [ sh:path ex:drug; sh:minCount 1; sh:maxCount 1; sh:nodeKind sh:IRI ];
+ sh:property [ sh:path ex:disease; sh:hasValue <http://purl.obolibrary.org/obo/MONDO_0005148>; sh:maxCount 1 ];
+ sh:property [ sh:path ex:indicationStage; sh:maxCount 1 ];
+ sh:property [ sh:path ex:aggregateStage; sh:maxCount 0 ] .
+ex:ClinicalTargetShape a sh:NodeShape; sh:targetClass ex:ClinicalTargetRecord;
+ sh:property [ sh:path ex:drug; sh:minCount 1; sh:maxCount 1; sh:nodeKind sh:IRI ];
+ sh:property [ sh:path ex:target; sh:minCount 1; sh:maxCount 1; sh:nodeKind sh:IRI ];
+ sh:property [ sh:path ex:indicationStage; sh:maxCount 0 ] .
+ex:ReportShape a sh:NodeShape; sh:targetClass ex:ClinicalReport;
+ sh:property [ sh:path ex:reportIdentifier; sh:minCount 1; sh:maxCount 1 ];
+ sh:property [ sh:path ex:qualityFieldState; sh:minCount 1; sh:maxCount 1; sh:in ("absent" "null" "empty" "present") ];
+ sh:property [ sh:path ex:indicationStage; sh:maxCount 0 ] .
+ex:ResolvedShape a sh:NodeShape; sh:targetSubjectsOf ex:resolvedReport;
+ sh:property [ sh:path ex:resolvedReport; sh:class ex:ClinicalReport; sh:nodeKind sh:IRI ] .
+ex:PathShape a sh:NodeShape; sh:targetClass ex:ClinicalContextLink;
+ sh:property [ sh:path ex:disease; sh:hasValue <http://purl.obolibrary.org/obo/MONDO_0005148>; sh:maxCount 1 ];
+ sh:property [ sh:path ex:drug; sh:minCount 1; sh:maxCount 1; sh:nodeKind sh:IRI ];
+ sh:property [ sh:path ex:target; sh:minCount 1; sh:maxCount 1; sh:nodeKind sh:IRI ];
+ sh:property [ sh:path ex:indicationStage; sh:maxCount 0 ];
+ sh:property [ sh:path ex:reportStage; sh:maxCount 0 ];
+ sh:property [ sh:path ex:aggregateStage; sh:maxCount 0 ];
+ sh:property [ sh:path prov:wasDerivedFrom; sh:qualifiedValueShape [ sh:class ex:IndicationRecord ]; sh:qualifiedMinCount 1 ];
+ sh:property [ sh:path prov:wasDerivedFrom; sh:qualifiedValueShape [ sh:class ex:MechanismRecord ]; sh:qualifiedMinCount 1 ];
+ sh:property [ sh:path prov:wasDerivedFrom; sh:qualifiedValueShape [ sh:class ex:ClinicalTargetRecord ]; sh:qualifiedMinCount 1 ] .

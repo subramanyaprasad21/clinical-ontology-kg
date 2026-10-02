@@ -19,3 +19,7 @@ Every question has an executable `.rq` file in `queries/competency/`. The build 
 The sixth invalid-data demonstration and all other synthetic mutations are reported separately in `reports/tables/invalid_cases.json`, not mixed into canonical query results. `queries/analysis/missing_provenance.rq` provides an additional record-chain check. The Python dataset-aware check also detects source quads lacking any reified provenance assertion, which a query over only statement records would miss.
 
 The [credibility audit](../reports/CREDIBILITY_AUDIT.md) qualifies the original machine statuses: four questions are answered within scope, four are partially answered and three remain unsupported. The saved query rows are unchanged; the distinction concerns what the results establish scientifically.
+
+## Separate 26.09 extension execution
+
+The table above describes the frozen core results. Those query files and saved results are unchanged. On the completed extension, the original queries 04–06 each execute with zero rows because the extension uses source-record predicates. The [record-aware variants](../audit/extension/final_queries/) return 333 clinical-context targets (04), 613 indications (05), and 798 supported clinical paths (06). Question 05 is answered within source-indication scope. Questions 04 and 06 remain partial: their clinical-context variants do not supply general disease–target association evidence. See the [executed summary](../reports/final/extension_summary.json) and [interpretation](EVALUATION.md). Other question assessments are unchanged.

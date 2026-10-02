@@ -1,0 +1,6 @@
+PREFIX ex: <https://example.org/clinical-kg/extension/>
+SELECT DISTINCT ?target WHERE {
+ GRAPH <https://example.org/clinical-kg/extension/graph/clinical-context> {
+  ?link a ex:ClinicalContextLink; ex:disease <http://purl.obolibrary.org/obo/MONDO_0005148>; ex:target ?target .
+ }
+} ORDER BY ?target

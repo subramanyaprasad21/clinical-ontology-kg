@@ -1,0 +1,93 @@
+{
+  "all_checks_passed": true,
+  "core_artifact_differences": [],
+  "core_artifacts_compared": 20,
+  "extension_artifact_differences": [],
+  "extension_artifact_sha256": {
+    "extension.nq": "23404c3c6bc7ed732ffb752280dbd380c4dee3b47742fe1f6e79e8cca09264bf",
+    "query_results.json": "14c8e8c01409341a29ed6e8be581e4b28e5368a333ec7b748ce1dba4b55656cb",
+    "validation.txt": "77debc800e6c973b66475968bdf71e2e667df8f4108e7f5299fe1651e6606dc9"
+  },
+  "extension_summary_identical": true,
+  "harness_sha256": "52c05a27bf8b6ce8c4ab142896b6ff8e2614e3c6de64ed4bc82c11f4c0fee25a",
+  "packages": [
+    {
+      "name": "html5rdf",
+      "version": "1.2.1"
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.0"
+    },
+    {
+      "name": "owlrl",
+      "version": "7.6.2"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3"
+    },
+    {
+      "name": "pip",
+      "version": "24.2"
+    },
+    {
+      "name": "pluggy",
+      "version": "1.6.0"
+    },
+    {
+      "name": "prettytable",
+      "version": "3.18.0"
+    },
+    {
+      "name": "pyarrow",
+      "version": "25.0.1"
+    },
+    {
+      "name": "Pygments",
+      "version": "2.21.0"
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.3.2"
+    },
+    {
+      "name": "pyshacl",
+      "version": "0.40.1"
+    },
+    {
+      "name": "pytest",
+      "version": "9.1.1"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3"
+    },
+    {
+      "name": "rdflib",
+      "version": "7.6.0"
+    },
+    {
+      "name": "wcwidth",
+      "version": "0.8.3"
+    }
+  ],
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "protected_files_changed": [],
+  "protected_files_checked": 71,
+  "python": "3.12.7",
+  "requirements_sha256": "517dd83a5935dba61e9fe72a2e3b5ac18c2c1704c2112f637323d43d6d9a5543",
+  "scope": "Fresh pinned packages and empty derived outputs on the same host/base Python; captured inputs hard-linked read-only by convention.",
+  "steps": {
+    "all_tests": 0,
+    "core_audit": 0,
+    "core_build": 0,
+    "core_clean_builds": 0,
+    "core_repeatability": 0,
+    "dependency_check": 0,
+    "extension_audit": 0,
+    "extension_build": 0,
+    "install": 0,
+    "owl": 0
+  }
+}

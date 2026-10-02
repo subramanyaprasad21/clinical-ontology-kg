@@ -1,0 +1,52 @@
+{
+  "artifacts": {
+    "extension.nq": "23404c3c6bc7ed732ffb752280dbd380c4dee3b47742fe1f6e79e8cca09264bf",
+    "query_results.json": "14c8e8c01409341a29ed6e8be581e4b28e5368a333ec7b748ce1dba4b55656cb",
+    "validation.txt": "77debc800e6c973b66475968bdf71e2e667df8f4108e7f5299fe1651e6606dc9"
+  },
+  "graph_counts": {
+    "distinct_iris_in_triples": 40697,
+    "quads": 1077529,
+    "subject_resources": 39696,
+    "unique_triples": 1077529
+  },
+  "implementation_sha256": "cb0357ede37b8850686f46f093c8351c66432174da8182396b631f9c4f2aacba",
+  "imported_reports": 37040,
+  "missing_report_metadata": {
+    "phaseFromSource": 6797
+  },
+  "named_graph_counts": {
+    "https://example.org/clinical-kg/extension/graph/clinical-context": 6391,
+    "https://example.org/clinical-kg/extension/graph/provenance": 194514,
+    "https://example.org/clinical-kg/extension/graph/records": 382275,
+    "https://example.org/clinical-kg/extension/graph/reports": 494349
+  },
+  "query_rows": {
+    "04_clinical_context_targets": 333,
+    "05_indications": 613,
+    "06_supported_clinical_paths": 798,
+    "original_04_disease_targets": 0,
+    "original_05_drugs": 0,
+    "original_06_disease_target_drug_path": 0
+  },
+  "reference_counts": {
+    "ClinicalTargetRecord.resolved": 180475,
+    "IndicationRecord.resolved": 6201
+  },
+  "release": "26.09",
+  "report_quality_field_states": {
+    "null": 28687,
+    "present": 8353
+  },
+  "selected_records": {
+    "clinical_targets": 798,
+    "disease": 1,
+    "indications": 613,
+    "mechanisms": 434
+  },
+  "shacl_conforms": true,
+  "unique_clinical_path_drugs": 372,
+  "unique_clinical_path_targets": 333,
+  "unique_indication_drugs": 613,
+  "unresolved_references": []
+}

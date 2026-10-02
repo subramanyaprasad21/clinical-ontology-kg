@@ -1,12 +1,27 @@
-# Limitations and negative findings
+# Limitations
 
-1. **No supported T2DM drug/target edges.** All provided mechanism identifiers resolve to catalogs, but no disease-target association table or structured drug indication table was supplied. Catalog membership and mechanism text do not establish a T2DM relation. Three competency questions remain unsupported. No extra datasets were downloaded.
-2. **Small phenotype coverage.** Three positive phenotype terms, one inheritance annotation and one onset annotation are directly linked. The study does not assess clinical comprehensiveness or make a treatment recommendation.
-3. **Shared evidence lineage.** OT reproduces HPO-derived annotations and contains duplicate evidence entries. Cross-file agreement is not independent corroboration. The number of distinct upstream resources is reported separately from source files and statement occurrences.
-4. **Acquisition history is incomplete.** The supplied folder lacks original download URLs and dates. OT `26.06` is a user declaration, not a release independently authenticated by file metadata. Raw hashes identify the local snapshots but do not establish their publisher provenance. Completing historical acquisition fields requires original receipts/logs, not inferred URLs or file modification times.
-5. **The HPOA date differs from the plan.** The actual annotation header says `2026-09-02`; HPO ontology is `2026-09-01`. Both are frozen as supplied. No date was silently changed.
-6. **Bounded OWL projection.** Only direct named disease hierarchy axioms are imported. Restrictions are preserved in audit records but not executed from Mondo; disjointness, full axiom provenance and remote ontology imports are not incorporated. The pipeline executes local OWL RL. A separate OWL DL projection passes the installed profile check and selected HermiT tests; neither evaluates the full source ontology.
-7. **Mappings inherit source judgments.** Ten exact mappings are explicit Mondo claims. They have not been individually adjudicated against every external terminology. One NANDO xref remains unresolved. No score or broader/narrower mapping is fabricated.
-8. **Repeatability has a defined scope.** Two clean-output builds and a separately reinstalled virtual environment reproduce 20 artifacts byte-for-byte on the same host. This does not prove behavior across all operating systems or dependency versions. SHA-256 checksums guard raw input identity; they do not prove biomedical truth.
-9. **Distribution is separate from local completion.** No source licensing review or public redistribution was performed. Raw inputs and their applicable terms must accompany any separately authorized sharing decision. The code and selected aggregate evidence are now versioned in a private GitHub repository; raw datasets and detailed source payloads were not pushed. No public release or source licensing review is claimed.
-10. **Inspection scope.** The installed OWL libraries have checked the reasoning projection's profile and selected entailments. Selected GUI classification and inverse checks are recorded in [Protégé observations](PROTEGE_OBSERVATIONS.md). These checks do not establish correctness of every modelling choice.
+The frozen core and the Open Targets 26.09 extension answer different questions. The points below apply to the current repository state.
+
+- The frozen core does not contain T2DM drug-target edges. The 26.09 extension contains 613 indications and 798 record-supported clinical paths across 333 targets, but it still does not provide a general disease-target association dataset. A supported path is a source-record join, not evidence of efficacy, causality or treatment suitability.
+
+- Phenotype coverage is small: three positive phenotype terms, one inheritance annotation and one onset annotation are directly linked. This is enough for the bounded integration and reasoning checks, not for clinical coverage.
+
+- Open Targets phenotype evidence shares HPO lineage with the HPO source material and contains duplicate evidence entries. Agreement across those files is therefore not independent corroboration.
+
+- The historical core has incomplete acquisition history. Its raw hashes identify the supplied files, but the original download URLs and dates are unavailable. The Open Targets `26.06` label is a declared version rather than a release independently authenticated from preserved receipts. The 26.09 extension has separate receipts; those do not repair the earlier history.
+
+- HPOA reports `2026-09-02` while the HPO ontology is `2026-09-01`. Both dates are kept as supplied.
+
+- Reasoning uses a bounded projection. Direct named disease hierarchy axioms are imported; the project does not execute every upstream Mondo restriction, disjointness axiom or remote import. The reasoning projection passes the installed OWL 2 DL profile check and selected HermiT tests. The full review export still has three documented profile violations.
+
+- Ten exact mappings are preserved from Mondo. They are source claims and have not been independently adjudicated against every external terminology. One NANDO xref remains unresolved.
+
+- Reproduction has been shown on the same host. Two clean core builds reproduce 20 artifacts, and a fresh virtual environment reproduces those 20 core artifacts plus three final extension artifacts byte-for-byte. Cross-platform reproduction and raw-data reacquisition have not been demonstrated.
+
+- Raw datasets, detailed payloads and large RDF outputs remain local. A Git clone is not sufficient to rebuild the project without the exact input files.
+
+- The formal and GUI checks cover selected model behaviour. They do not establish correctness of every modelling choice or clinical truth.
+
+- All 186,676 report references resolve, but 137,473 references from multi-disease clinical-target records do not contain T2DM. They remain attached as provenance and are not treated as T2DM-specific report evidence.
+
+- QC and stage values remain source metadata. Among imported reports, 8,353 have QC flags, 28,687 have null QC fields and 6,797 are missing `phaseFromSource`. The graph retains these states rather than silently filtering them. Seventy indication records carry the source value `APPROVAL`; this is not an independently verified regulatory determination.

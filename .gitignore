@@ -37,3 +37,6 @@ reports/fresh_environment/*.log
 
 # Extension captures are separate from the frozen core.
 data/extensions/
+
+# Final verification execution logs remain local.
+reports/final/logs/

@@ -1,10 +1,10 @@
 # Scientific and semantic audit
 
-> Historical baseline audit, before the export/validation fix. Its findings and ratings are preserved. See [the follow-up](EXPORT_VALIDATION_FOLLOWUP.md) for current results. Baseline machine evidence is in `credibility_audit/pre_export_fix/`; the main evidence files now describe the latest run.
+> Historical baseline audit, before the export/validation fix. Its findings are preserved. See [the follow-up](EXPORT_VALIDATION_FOLLOWUP.md) for current results. Baseline machine evidence is in `credibility_audit/pre_export_fix/`; the main evidence files now describe the latest run.
 
-Checks executed 15 September 2026; documentation completed 16 September 2026. Audited baseline: `4f44c9f`. This review evaluates the existing T2DM project; it adds no biomedical data or clinical edges. The separate verification code was written and run by the same AI assistant that helped implement the project. “Independent” below means independent of production extraction/build helpers, not an external researcher or a second reasoning engine.
+Checks executed 15 September 2026; documentation completed 16 September 2026. Audited baseline: `4f44c9f`. This review evaluates the existing T2DM project; it adds no biomedical data or clinical edges. The separate verification code is independent of the production extraction/build helpers, but it uses the same RDF/OWL libraries and is not an external review or a second reasoning engine. Development tooling is documented separately in [ATTRIBUTION.md](../ATTRIBUTION.md).
 
-**Verdict:** the project is defensible as a small semantic integration prototype with a useful negative feasibility result. It is not evidence of a comprehensive diabetes graph, sophisticated clinical reasoning, independent biological corroboration, or unaided human ontology authorship. It is suitable for a supervisor discussion if those boundaries are stated and the author can explain the modelling decisions.
+**Verdict:** the project is defensible as a small semantic integration prototype with a useful negative feasibility result. It is not evidence of a comprehensive diabetes graph, sophisticated clinical reasoning, or independent biological corroboration. Its technical claims remain bounded by the implemented model, recorded source data and executed checks.
 
 ## Verified completion claims
 
@@ -39,7 +39,7 @@ These findings have not been silently repaired in the ontology or canonical grap
 6. **The invalid-case summary omits focus nodes.** Production code chooses an arbitrary matching entity/statement using graph iteration and records only violation counts. Counts repeat, but that is weaker than repeating a named fixture. The audit uses fixed, sorted choices and records actual focus nodes, paths, messages and components.
 7. **OWL/RDF compatibility is not OWL DL certification.** Native class IRIs also represent terminology concepts. The builder replaces restriction/list blank nodes with named project IRIs. RDF round trips and the selected OWL RL rules work; this is not a test of OWL 2 DL profile validity or Protégé reasoner compatibility. No actual Protégé session has been verified.
 8. **The drug/target absence conclusion was partly encoded in the audit program.** The original program writes unsupported messages after inspecting schemas; it is not a general relation-discovery engine. This review checked the actual catalog schemas and the inventory separately. The negative conclusion is justified for structured joins in these files, not for all possible information in free text or other Open Targets products.
-9. **Authorship needs a precise boundary.** The author supplied the research direction and source/scope constraints. AI assistance also drafted the implemented OWL vocabulary and modelling choices. There is no recorded author sign-off of every axiom. A coding-only disclosure would be inaccurate for the present history.
+9. **Design provenance needs a precise boundary.** Source facts, transformed source information and local modelling choices are distinct categories in this project. The OWL vocabulary and modelling decisions are implementation choices rather than imported biomedical facts. Their justification therefore comes from the documented rationale, tests and review boundary. Development tooling is documented separately in `ATTRIBUTION.md`.
 
 ## T2DM trace and verified join keys
 
@@ -154,30 +154,28 @@ Two clean output builds with Python 3.12.7 and the pinned packages were byte-ide
 
 ## Presentation and authorship
 
-The first README led with completion and technology claims, repeated caveats, and linked to many locally generated files absent from Git. Empty scaffold directories and implementation notes also made the entry point look more administrative than necessary. The revised README follows the direct problem/result style of the author's FACT sample, as also used in the Transformation Fidelity project. No scientific content was copied from that unrelated study. Detailed limitations and audit evidence remain available rather than being deleted for appearance.
+The first README led with completion and technology claims, repeated caveats, and linked to many locally generated files absent from Git. Empty scaffold directories and implementation notes also made the entry point look more administrative than necessary. The revised README uses a direct problem/result structure. Detailed limitations and audit evidence remain available rather than being deleted for appearance.
 
-A short disclosure identifies AI-assisted code, debugging, documentation and OWL drafting. The [design decision record](../docs/DESIGN_DECISIONS.md) separates scope decisions supplied by the author from implementation choices awaiting author review. Review and revision can establish a defensible author-approved design; it cannot retroactively make generated design unaided.
+Development tooling is documented in [ATTRIBUTION.md](../ATTRIBUTION.md). The [design decision record](../docs/DESIGN_DECISIONS.md) separates source and scope constraints from implementation choices and records the review state of those choices.
 
 The Git history begins with the already-completed local core and then records the audit and documentation work. It does not backdate work or reconstruct fictitious daily progress. The remote is private. Public distribution and source licensing review have not been completed.
 
-## Before showing a supervisor
+## Technical review checklist
 
-1. Work through the design decisions and the [defence guide](../docs/SUPERVISOR_DEFENCE_GUIDE.md). Explain each axiom and reject or revise choices you do not accept. Record the actual review date and reasons.
+1. Work through the [design decisions](../docs/DESIGN_DECISIONS.md). Check each axiom against its intended semantics, tests and source boundary; revise any choice whose justification is not defensible.
 2. Perform the [Protégé review](../docs/PROTEGE_REVIEW_GUIDE.md), particularly the class/concept distinction and named restriction export. Do not claim a successful DL reasoner run until it is observed.
 3. State the shared evidence lineage and absent clinical drug/target data in the first discussion. Present the project as an engineering case study, not a new biomedical discovery.
 4. Before claiming portable independent reproduction, recover source acquisition records or agree a lawful way to provide the exact raw inputs. A private Git repository alone does not solve this.
 5. Before extending validation coverage, decide what source disagreements mean. Add a generic-annotation endpoint shape and context-aware positive/excluded conflict check only as explicit, tested design changes. They are not silently added by this audit.
 
-## Ratings
+## Audit summary
 
-These are audit judgments, not calibrated scores or supervisor predictions. For the final row only, a higher score means greater risk.
+The audit records the following boundaries without assigning scores.
 
-| Dimension | Score / 10 | Reason |
-|---|---:|---|
-| Scientific credibility | 7 | Source-faithful bounded result and negative findings; no independent clinical evaluation |
-| Semantic modelling | 6 | Defensible annotation model, but basic inference, class/concept export risk and limited conflict validation |
-| Provenance | 8 | All selected records checked and all source quads traceable; acquisition and minimal-proof gaps remain |
-| Reproducibility | 7 | Clean-output byte identity proven locally; raw acquisition and fresh-environment reproduction absent |
-| Documentation clarity | 8 | Direct entry point, explicit claim boundaries and usable evidence/defence guides |
-| Supervisor readiness | 6 | Ready as a prototype for discussion; author design review and actual Protégé walkthrough still pending |
-| Risk of superficial AI presentation | 4 | Reduced by precise findings and disclosure; it rises sharply if the author cannot explain the model |
+| Area | Recorded finding |
+|---|---|
+| Scientific scope | Source-faithful bounded integration with explicit negative findings; no independent clinical evaluation |
+| Semantic model | The annotation model is testable and documented; inference is intentionally limited, and class/concept dual use remains a known modelling constraint |
+| Provenance | Selected source records were checked and all source quads are traceable; acquisition history and minimal-proof provenance remain incomplete |
+| Reproducibility | Clean-output byte identity was demonstrated locally; raw-data reacquisition and cross-platform reproduction were not established |
+| Documentation | Current summaries separate measured results, limitations and historical records; generated evidence remains available for inspection |

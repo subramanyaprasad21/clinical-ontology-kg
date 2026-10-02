@@ -1,6 +1,6 @@
 # Separate OWL reasoning projection — 2026-10-01
 
-A new `data/processed/reasoning.ttl` export separates terminology reasoning from RDF provenance schema. This is a technical proposal pending author acceptance of the export boundary. The accepted annotation interpretation and evidence-conflict policy are unchanged.
+A new `data/processed/reasoning.ttl` export separates terminology reasoning from RDF provenance schema. This is a technical projection with an explicit export boundary. The recorded annotation interpretation and evidence-conflict policy are unchanged.
 
 The full `review.ttl`, canonical dataset and provenance output remain available. The new export preserves all 160 asserted source triples, anonymous restrictions, terminology declarations and disease hierarchy. It excludes exactly 13 schema triples defining provenance classes and their superclass declarations. Their complete RDF statements are listed in generated `reports/tables/reasoning_export.json`. Recombining those exclusions with the projection reconstructs the full review graph up to blank-node identity; a regression test enforces this boundary.
 
@@ -16,8 +16,8 @@ Run the commands in [the earlier follow-up](EXPORT_VALIDATION_FOLLOWUP.md) to re
 
 The 31 regression tests and all 35 independent audit checks pass. Two clean workspaces with different hash seeds reproduce 20 artifacts byte-for-byte, matching current outputs. This uses the same installed Python environment and frozen inputs, not a fresh dependency installation.
 
-## Proposed author decision
+## Recommended use
 
 Use `reasoning.ttl` for terminology OWL reasoning and the canonical dataset plus `provenance.ttl` for source evidence and auditing. Keep `review.ttl` as the combined inspection export with its documented limitations. This division retains evidence while keeping the formal reasoning input within the tested profile.
 
-The trade-off is that reasoning and evidence inspection use different views. The exclusion manifest and preservation tests make their boundary explicit, but the projection does not carry the full statement-level provenance as OWL axioms. Accepting this design does not imply unaided authorship: AI assisted its implementation and proposed the separation. Author review is pending.
+The trade-off is that reasoning and evidence inspection use different views. The exclusion manifest and preservation tests make their boundary explicit, but the projection does not carry the full statement-level provenance as OWL axioms. Development tooling used during implementation and drafting is documented separately in [ATTRIBUTION.md](../ATTRIBUTION.md). The tests establish the stated projection boundary; they do not certify every modelling choice.

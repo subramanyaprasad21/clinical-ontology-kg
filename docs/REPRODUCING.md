@@ -66,3 +66,29 @@ The check requires zero profile violations for `reasoning.ttl`, consistency, the
 ```
 
 This creates a new virtual environment, installs pinned packages with the pip cache disabled, runs `pip check`, builds in a separate empty workspace, runs tests and the separate audit, and compares 20 artifacts with recorded outputs. Package installation requires network access. The same host, base Python and hard-linked frozen raw inputs are reused. Results are saved in `reports/fresh_environment/result.json`; temporary paths in execution logs remain local.
+
+## Final separate clinical extension
+
+The final builder requires the four context-table captures in [capture_manifest.json](../reports/extension/capture_manifest.json) and the report capture in [clinical_report_manifest.json](../reports/extension/clinical_report_manifest.json), including their saved directory listings. Place the exact bytes at the receipt paths under `data/extensions/opentargets-26.09/`. The receipts include archive URLs, sizes and hashes. Hash mismatch fails replay; do not regenerate receipts to accept replacement bytes. The earlier `derived/` graph is retained as historical evidence; completed outputs are written to `final/`.
+
+```sh
+.venv/bin/python audit/extension/final_build.py
+.venv/bin/python audit/extension/verify_final.py
+.venv/bin/python -m pytest -q tests audit/extension/test_build.py audit/extension/test_reports.py
+```
+
+The builder rereads captured Parquet, resolves report IDs, builds four named graphs, validates structural shapes and executes original competency queries 04–06 plus three record-aware variants. Outputs are `data/extensions/opentargets-26.09/final/extension.nq`, `query_results.json` and `validation.txt`. Local report inspection files separate selected report records from per-reference context checks. The final summary records resolved counts and an explicit unresolved-reference list. The independent verifier compares imported payloads, report fields, QC state, stages, resolutions and paths with raw rows.
+
+## Complete verification without replacing historical reports
+
+With the installed Protégé and JDK directories configured as above:
+
+```sh
+.venv/bin/python audit/extension/verify_project.py \
+  --protege-contents "$KG_PROTEGE_CONTENTS" \
+  --java-home "$KG_JAVA_HOME"
+```
+
+This command creates a temporary workspace and fresh virtual environment, installs pinned requirements without the pip cache, runs dependency checks, the core build, all 46 tests, the 35-check core audit, two clean core builds, two in-place core builds, OWL/HermiT checks, the final extension build and its independent audit. It compares 20 core and three extension artifacts with existing local outputs and verifies the [protected-file baseline](../reports/final/protected_files.json). Baseline core and final extension outputs must exist before the comparison. Network access is needed only for package installation; input files are hard-linked into the temporary workspace and read without modification.
+
+All steps passed in the [recorded final run](../reports/final/project_verification.json). All compared artifacts and extension summaries were byte-identical under hash seed `707`. Reports are written under `reports/final/`; detailed execution logs stay local. Historical reports remain unchanged. This is same-host reproduction, not a test of another OS, Python installation or new raw acquisition.
